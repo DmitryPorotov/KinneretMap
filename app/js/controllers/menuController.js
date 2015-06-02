@@ -19,18 +19,6 @@
         filterResults($scope.rooms);
     }
 
-    $scope.setResultsClass = function () {
-        if (this.isSearchShown) {
-            return "from-search";
-        }
-        else if (this.isBuildingsCatalogShown) {
-            return "from-building-catalog";
-        }
-        else if (this.isStaffCatalogShown) {
-            return "from-staff-catalog";
-        }
-    }
-
     $scope.showBuildingsCatalog = function () {
         $scope.isBuildingsCatalogShown = true;
         $scope.isStaffCatalogShown = false;
@@ -40,10 +28,14 @@
     function filterResults(rooms) {
         $scope.searchResults = [];
         $scope.rooms.forEach(function (v, i) {
-            if (v.id == this.searchField) {
+            if (v.id.toString().indexOf(this.searchField) > -1 ) {
                 this.searchResults.push(v);
             }
         }, $scope);
+    }
+
+    $scope.showOnMap = function (r) {
+        console.log(r);
     }
 
 }]);

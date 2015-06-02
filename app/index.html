@@ -2,27 +2,28 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="mapApp">
 <head>
-  <title>Kinneret College Map</title>
-  <link href="css/map.css" rel="stylesheet" />
-  <link href="css/ol.css" rel="stylesheet" />
+    <title>Kinneret College Map</title>
+    <link href="css/map.css" rel="stylesheet" />
+    <link href="css/ol.css" rel="stylesheet" />
 
-  <script src="js/lib/underscore-min.js"></script>
-  <!--angular.js lib-->
-  <script src="js/lib/angular/angular.js"></script>
-  <script src="js/lib/angular/angular-route.js"></script>
-  <!--angular.js lib END-->
-  <script src="js/app.js"></script>
-  <script src="js/services/dataService.js"></script>
-  <script src="js/controllers/menuController.js"></script>
-  <script src="js/directives/searchDirective.js"></script>
-  <script src="js/directives/catalogDirective.js"></script>
+    <script src="js/lib/underscore-min.js"></script>
+    <!--angular.js lib-->
+    <script src="js/lib/angular/angular.js"></script>
+    <script src="js/lib/angular/angular-route.js"></script>
+    <!--angular.js lib END-->
+    <script src="js/app.js"></script>
+    <script src="js/services/dataService.js"></script>
+    <script src="js/controllers/menuController.js"></script>
+    <script src="js/controllers/mapController.js"></script>
+    <script src="js/directives/searchDirective.js"></script>
+    <script src="js/directives/catalogDirective.js"></script>
 
 
   <script src="js/geoJsonData.js"></script>
   <script src="js/lib/ol-debug.js"></script>
 </head>
 <body>
-  <div id="map" class="map"></div>
+  <div id="map" class="map" ng-controller="mapController"></div>
   <div id="menu-bar" ng-controller="menuController">
     <div class="search-bar">
       <button type="button" class="search-button buttons" ng-click="search()"></button>
@@ -30,11 +31,21 @@
       <button type="button" class="buildings-button buttons" ng-click="showBuildingsCatalog()"></button>
       <button type="button" class="staff-button buttons"></button>
     </div>
-    <div class="catalog-box" ng-class="setResultsClass()" ng-hide="!(isSearchShown || isBuildingsCatalogShown || isStaffCatalogShown)">
-      <div class="arrow-up"></div>
-      <km-search search-results="searchResults" ng-show="isSearchShown"></km-search>
-      <km-catalog ng-show="isBuildingsCatalogShown"></km-catalog>
-    </div>
+
+        <div class="search-box" ng-hide="!isSearchShown">
+            <div class="arrow-up"></div>
+            <km-search search-results="searchResults" ng-show="isSearchShown"></km-search>
+        </div>
+
+      <div class="buildings-catalog-box" ng-hide="!isBuildingsCatalogShown">
+          <div class="arrow-up"></div>
+          <km-catalog ng-show="isBuildingsCatalogShown"></km-catalog>
+      </div>
+
+      <div class="staff-catalog-box" ng-hide="!isStaffCatalogShown">
+          <div class="arrow-up"></div>
+      </div>
+
     <div class="room-details" ng-hide="!isRoomDetailsShown">
 
     </div>
@@ -42,7 +53,7 @@
 
     </div>
   </div>
-  <script type="text/javascript">
+  <!--<script type="text/javascript">
     var styles = {
       'Polygon': [new ol.style.Style({
         stroke: new ol.style.Stroke({
@@ -85,6 +96,6 @@
         debugger;
       })
     });
-  </script>
+  </script>-->
 </body>
 </html>

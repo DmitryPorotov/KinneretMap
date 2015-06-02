@@ -61,7 +61,7 @@
     padding: 5px 5px;
 }
 
-.catalog-box, .room-details, .floor-plan {
+.search-box, .buildings-catalog-box, .staff-catalog-box, .room-details, .floor-plan {
     width:100%;
     min-height:15px;
     margin-top:35px;
@@ -84,15 +84,15 @@
     top:-7px;
 }
 
-.from-search .arrow-up {
+.search-box .arrow-up {
     left:15px;
 }
 
-.from-building-catalog .arrow-up {
+.buildings-catalog-box .arrow-up {
     right:33px;
 }
 
-.from-staff-catalog .arrow-up {
+.staff-catalog-box .arrow-up {
     right:7px;
 }
 
@@ -112,5 +112,6 @@
 
 .rooms-container {
     padding-left: 20px;
-    display: none;
+    /*display: none;*/
 }
+
