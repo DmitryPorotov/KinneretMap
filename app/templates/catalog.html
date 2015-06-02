@@ -1,0 +1,7 @@
+﻿<div ng-repeat="b in data">
+    <span class="building-container"><i class="ico-plus" ng-click="openRooms(b[0].building)"></i>{{b[0].building}}</span>
+    <div class="rooms-container">
+        <div ng-repeat="r in b">{{r.id}}
+        </div>
+    </div>
+</div>
