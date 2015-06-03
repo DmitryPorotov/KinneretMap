@@ -1,5 +1,5 @@
 ﻿<km-buildings>
     <km-rooms-container ng-repeat="b in data" building-name="{{b[0].building}}">
-        <div ng-repeat="r in b" ng-click="showOnMap(r)">{{r.id}}</div>
+        <div ng-repeat="r in b" ng-click="showDetails(r)">{{r.id}}</div>
     </km-rooms-container>
 </km-buildings>

@@ -115,3 +115,23 @@
     /*display: none;*/
 }
 
+.floor-plan-img{
+    height: 100%;
+}
+
+.floor-plan-img-container{
+    height: 500px;
+}
+
+.svg-room {
+    fill: rgba(0,0,0,0);
+}
+
+.svg-room:hover {
+    fill: rgba(141,55,180,0.1);
+    stroke: rgb(141,55,180);
+    stroke-width: 1px;
+}
+.svg-room.selected{
+    fill: rgba(141,55,180,0.4);
+}

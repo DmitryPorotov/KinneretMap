@@ -7,6 +7,7 @@
     $scope.isStaffCatalogShown = false;
     $scope.isRoomDetailsShown = false;
     $scope.isFloorPlanShown = false;
+    $scope.curRoom = null;
 
     dataService.getRooms().success(function (data) {
         $scope.rooms = data;
@@ -34,8 +35,14 @@
         }, $scope);
     }
 
-    $scope.showOnMap = function (r) {
-        console.log(r);
+    $scope.showDetails = function (r) {
+        $scope.isRoomDetailsShown = true;
+        $scope.isFloorPlanShown = true;
+        $scope.curRoom = r;
+    }
+
+    $scope.selectRoom = function(roomNum) {
+        $scope.curRoom = _.find($scope.rooms, function (room) { return room.id == roomNum;})
     }
 
 }]);
