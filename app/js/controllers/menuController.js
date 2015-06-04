@@ -1,7 +1,9 @@
-﻿mapApp.controller("menuController", ["$scope", "dataService", function ($scope, dataService) {
+﻿mapApp.controller("menuController", ["$scope", "dataService", "$rootScope",function ($scope, dataService, $rootScope) {
+    $rootScope.currentBuildingId = null;
     $scope.searchField = null;
     $scope.searchResults = [];
     $scope.rooms = null;
+    $scope.buildings = null;
     $scope.isSearchShown = false;
     $scope.isBuildingsCatalogShown = false;
     $scope.isStaffCatalogShown = false;
@@ -11,6 +13,10 @@
 
     dataService.getRooms().success(function (data) {
         $scope.rooms = data;
+    });
+
+    dataService.getBuildings().success(function (data) {
+        $scope.buildings = data;
     });
 
     $scope.search = function () {
@@ -39,10 +45,13 @@
         $scope.isRoomDetailsShown = true;
         $scope.isFloorPlanShown = true;
         $scope.curRoom = r;
+        $rootScope.currentBuildingId =_.find($scope.buildings, function (building) { return building.id == $scope.curRoom.building;});
     }
 
     $scope.selectRoom = function(roomNum) {
-        $scope.curRoom = _.find($scope.rooms, function (room) { return room.id == roomNum;})
+        $scope.curRoom = _.find($scope.rooms, function (room) { return room.id == roomNum;});
+
+        $rootScope.currentBuildingId =_.find($scope.buildings, function (building) { return building.id == $scope.curRoom.building;});
     }
 
 }]);
