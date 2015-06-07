@@ -6,9 +6,7 @@ mapApp.controller("mapController", ["$scope", "$rootScope", function ($scope, $r
 
     init();
 
-
     $rootScope.$watch("currentBuildingId",function(newVal){
-        console.log(newVal);
         if(newVal) {
 
             $scope.map.beforeRender(ol.animation.pan({
@@ -55,6 +53,7 @@ mapApp.controller("mapController", ["$scope", "$rootScope", function ($scope, $r
                 }),
                 vectorLayer
             ],
+            renderer: 'dom',
             view: new ol.View({
                 center: ol.proj.transform([35.5919148, 32.7053342], 'EPSG:4326', 'EPSG:3857'),
                 zoom: 19
@@ -62,7 +61,7 @@ mapApp.controller("mapController", ["$scope", "$rootScope", function ($scope, $r
         });
 
         $scope.map.on("click", function (e) {
-            map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
+            $scope.map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
                 debugger;
             })
         });
