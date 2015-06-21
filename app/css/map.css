@@ -47,7 +47,9 @@
     content: "\e986";
 }
 .search-button {
-    padding: 5px 15px;
+    /*padding: 5px 15px;*/
+    width: 44px;
+    height: 23px;
 }
 
 .buildings-button:before {
@@ -58,7 +60,9 @@
 }
 
 .buildings-button, .staff-button  {
-    padding: 5px 5px;
+    width: 23px;
+    height: 23px;
+    /*padding: 5px 5px;*/
 }
 
 .search-box, .buildings-catalog-box, .staff-catalog-box, .room-details, .floor-plan {
