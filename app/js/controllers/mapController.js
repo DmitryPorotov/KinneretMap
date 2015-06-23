@@ -6,7 +6,7 @@ mapApp.controller("mapController", ["$scope", "$rootScope", function ($scope, $r
 
     init();
 
-    $rootScope.$watch("currentBuildingId",function(newVal){
+    $rootScope.$watch("currentBuilding",function(newVal){
         if(newVal) {
 
             $scope.map.beforeRender(ol.animation.pan({
@@ -18,7 +18,7 @@ mapApp.controller("mapController", ["$scope", "$rootScope", function ($scope, $r
                 zoom: 19
             }));
         }
-        $rootScope.currentBuildingId = null;
+        $rootScope.currentBuilding = null;
     });
 
     function init() {

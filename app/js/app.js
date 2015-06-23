@@ -1,21 +1,19 @@
-﻿var mapApp = angular.module('mapApp', ['ngRoute'],
+﻿var mapApp = angular.module('mapApp', ['ngRoute','angularTreeview'],
     function ($routeProvider, $locationProvider) {
-        //$routeProvider
-        //    .when("/courses", {
-        //        controller: "CoursesController",
-        //        templateUrl: "/templates/courses.html",
-        //        access: "all"
-        //    })
-        //    .when("/drafts", {
-        //        controller: "DraftsController",
-        //        templateUrl: "/templates/drafts.html",
-        //        access: "all"
-        //    })
-        //    .when("/drafts/edit/:id", {
-        //        controller: "DraftEditController",
-        //        templateUrl: "/templates/draftEdit.html",
-        //        access: "all"
-        //    })
+        $routeProvider
+            .when("/:lang", {
+                controller: "menuController",
+                templateUrl: "templates/main.html",
+                access: "all"
+            })
+            //.when("/he", {
+            //    controller: "menuController",
+            //    templateUrl: "templates/main.html",
+            //    access: "all"
+            //})
+            .otherwise({
+                redirectTo: '/he'
+            })
 
     }
 );

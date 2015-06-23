@@ -1,0 +1,57 @@
+<!--<div id="map" class="map" ng-controller="mapController"></div>-->
+<div id="menu-bar">
+    <div class="search-bar">
+        <button type="button" class="search-button buttons" ng-click="search()"></button>
+        <input type="text" class="search-field" ng-model="searchField"/>
+        <button type="button" class="buildings-button buttons" ng-click="showBuildingsCatalog()"></button>
+        <button type="button" class="staff-button buttons"></button>
+    </div>
+
+    <div class="search-box" ng-hide="!isSearchShown">
+        <div class="arrow-up"></div>
+        <km-search search-results="searchResults" ng-show="isSearchShown"></km-search>
+    </div>
+
+    <div class="buildings-catalog-box" ng-hide="!isBuildingsCatalogShown">
+        <div class="arrow-up"></div>
+        <km-catalog ng-show="isBuildingsCatalogShown"></km-catalog>
+    </div>
+
+    <div class="staff-catalog-box" ng-hide="!isStaffCatalogShown">
+        <div class="arrow-up"></div>
+    </div>
+
+    <div class="room-details" ng-hide="!isRoomDetailsShown">
+        <div>
+            {{curRoom.id}} {{curRoom.type}} number of sits: {{curRoom.sits}} building: {{curRoom.building}}
+        </div>
+    </div>
+    <div class="floor-plan" ng-hide="!isFloorPlanShown">
+        <div class="floor-plan-img-container" style="position: relative">
+            <img src="images/achi0.png" class="floor-plan-img" style="position: absolute">
+            <svg height="100%" viewBox="0 0 886.5 1814.4" style="position: absolute">
+                <path class="svg-room" ng-class="{selected:curRoom.id==800}" ng-click="selectRoom(800)"
+                      d="m 10.682574,979.90782 62.629458,0.25254 0.252538,376.28178 -62.629458,0.2526 z"
+                      id="800"/>
+                <path class="svg-room" ng-class="{selected:curRoom.id==801}" ng-click="selectRoom(801)"
+                      d="m 597.35715,467.01639 275.89286,0.35715 0.17857,511.25 -276.25,0.17857 0.17857,-79.10714 -38.75,0.71428 -0.17857,-370.89285 38.92857,0 z"
+                      id="801"/>
+                <path class="svg-room" ng-class="{selected:curRoom.id==803}" ng-click="selectRoom(803)"
+                      d="m 597.89286,993.23364 275.33372,-0.1938 0.38057,401.0866 -276.07143,0 0,-64.8214 -38.92857,-0.3571 -1.96429,-288.9286 40.71429,0 z"
+                      id="803"/>
+                <path class="svg-room" ng-class="{selected:curRoom.id==804}" ng-click="selectRoom(804)"
+                      d="m 10.935112,897.32785 327.541958,0 -1.26269,74.24621 -326.279268,0.50508 z"
+                      id="804" />
+                <path class="svg-room" ng-class="{selected:curRoom.id==805}" ng-click="selectRoom(805)"
+                      d="m 597.07612,1401.39394 276.27672,0 0.50508,400.52546 -276.27672,1.0102 -0.25254,-63.13456 -39.14341,-0.505 0.75761,-259.1042 38.13326,0.5051 z"
+                      id="805"/>
+                <path class="svg-room" ng-class="{selected:curRoom.id==806}" ng-click="selectRoom(806)"
+                      d="m 15.750008,1366.23364 309.999992,-0.3572 1.42858,149.6429 -41.07143,0.3571 0.35714,63.2143 -270.357139,0.7143 z"
+                      id="806"/>
+                <path class="svg-room" ng-class="{selected:curRoom.id==808}" ng-click="selectRoom(808)"
+                      d="m 12.892865,1591.59074 275.714285,-0.3571 0.35714,65 38.57143,0 1.07143,147.14276 -315.714285,-0.7143 z"
+                      id="808"/>
+            </svg>
+        </div>
+    </div>
+</div>

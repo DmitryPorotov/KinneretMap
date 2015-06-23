@@ -1,4 +1,4 @@
-﻿mapApp.controller("menuController", ["$scope", "dataService", "$rootScope",function ($scope, dataService, $rootScope) {
+﻿mapApp.controller("menuController", ["$scope", "dataService", "$rootScope", "$routeParams",function ($scope, dataService, $rootScope, $routeParams) {
     $rootScope.currentBuildingId = null;
     $scope.searchField = null;
     $scope.searchResults = [];
@@ -41,17 +41,28 @@
         }, $scope);
     }
 
-    $scope.showDetails = function (r) {
+    $scope.$watch("roomsTree.currentNode",function (n, o) {
+        if (n) {
+            $scope.isRoomDetailsShown = true;
+            $scope.isFloorPlanShown = true;
+            $scope.curRoom = n;
+            $rootScope.currentBuilding = _.find($scope.buildings, function (building) {
+                return building.id === $scope.curRoom.building;
+            });
+        }
+    });
+
+/*    $scope.showDetails = function (r) {
         $scope.isRoomDetailsShown = true;
         $scope.isFloorPlanShown = true;
         $scope.curRoom = r;
         $rootScope.currentBuildingId =_.find($scope.buildings, function (building) { return building.id == $scope.curRoom.building;});
-    }
+    }*/
 
     $scope.selectRoom = function(roomNum) {
         $scope.curRoom = _.find($scope.rooms, function (room) { return room.id == roomNum;});
 
-        $rootScope.currentBuildingId =_.find($scope.buildings, function (building) { return building.id == $scope.curRoom.building;});
+        $rootScope.currentBuilding =_.find($scope.buildings, function (building) { return building.id == $scope.curRoom.building;});
     }
 
 }]);
