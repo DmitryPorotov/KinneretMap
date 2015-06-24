@@ -121,12 +121,17 @@
 
 .floor-plan-img{
     height: 100%;
+    position: absolute;
 }
 
 .floor-plan-img-container{
     height: 500px;
+    position: relative;
 }
-
+.floor-plan-svg {
+    position: absolute;
+    height: 100%;
+}
 .svg-room {
     fill: rgba(0,0,0,0);
 }
@@ -135,6 +140,7 @@
     fill: rgba(141,55,180,0.1);
     stroke: rgb(141,55,180);
     stroke-width: 1px;
+    cursor: pointer;
 }
 .svg-room.selected{
     fill: rgba(141,55,180,0.4);

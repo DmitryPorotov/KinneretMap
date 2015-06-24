@@ -1,37 +1,50 @@
 ﻿[
-    {
-        "id": "achi",
-        "hebName": "בית אחי",
-        "engName": "Achi engineering school",
-        "lon":35.59297,
-        "lat":32.70562
-    },
-    {
-        "id": "library",
-        "hebName": "ספרייה",
-        "engName": "Library",
-        "lon":35.59261,
-        "lat":32.70562
-    },
-    {
-        "id": "triguboff",
-        "hebName": "טריגובוף",
-        "engName": "Triguboff",
-        "lon":35.59184,
-        "lat":32.70542
-    },
-    {
-        "id": "alperin",
-        "hebName": "אלפרין",
-        "engName": "Alperin",
-        "lon":35.59117,
-        "lat":32.70524
-    },
-    {
-        "id": "research",
-        "hebName": "מחקר",
-        "engName": "Research",
-        "lon":35.59075,
-        "lat":32.70524
-    }
+  {
+    "id": "achi",
+    "hebName": "בית אחי",
+    "engName": "Achi engineering school",
+    "lon":35.59297,
+    "lat":32.70562,
+    "nodeType": "building"
+  },
+  {
+    "id": "library",
+    "hebName": "ספרייה",
+    "engName": "Library",
+    "lon":35.59261,
+    "lat":32.70562,
+    "nodeType": "building"
+  },
+  {
+    "id": "triguboff",
+    "hebName": "טריגובוף",
+    "engName": "Triguboff",
+    "lon":35.59184,
+    "lat":32.70542,
+    "nodeType": "building"
+  },
+  {
+    "id": "alperin",
+    "hebName": "אלפרין",
+    "engName": "Alperin",
+    "lon":35.59117,
+    "lat":32.70524,
+    "nodeType": "building"
+  },
+  {
+    "id": "research",
+    "hebName": "מחקר",
+    "engName": "Research",
+    "lon":35.59075,
+    "lat":32.70524,
+    "nodeType": "building"
+  },
+  {
+    "id": "caravan",
+    "hebName": "קרוונים",
+    "engName": "Caravans",
+    "lon":35.59095,
+    "lat":32.70553,
+    "nodeType": "caravans"
+  }
 ]

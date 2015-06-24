@@ -4,6 +4,7 @@
     $scope.searchResults = [];
     $scope.rooms = null;
     $scope.buildings = null;
+    $scope.floors = null;
     $scope.isSearchShown = false;
     $scope.isBuildingsCatalogShown = false;
     $scope.isStaffCatalogShown = false;
@@ -17,6 +18,10 @@
 
     dataService.getBuildings().success(function (data) {
         $scope.buildings = data;
+    });
+
+    dataService.getFloors().success(function (data) {
+        $scope.floors = data;
     });
 
     $scope.search = function () {
@@ -47,7 +52,7 @@
             $scope.isFloorPlanShown = true;
             $scope.curRoom = n;
             $rootScope.currentBuilding = _.find($scope.buildings, function (building) {
-                return building.id === $scope.curRoom.building;
+                return building.id === $scope.curRoom.buildingId;
             });
         }
     });
@@ -62,7 +67,7 @@
     $scope.selectRoom = function(roomNum) {
         $scope.curRoom = _.find($scope.rooms, function (room) { return room.id == roomNum;});
 
-        $rootScope.currentBuilding =_.find($scope.buildings, function (building) { return building.id == $scope.curRoom.building;});
+        $rootScope.currentBuilding =_.find($scope.buildings, function (building) { return building.id == $scope.curRoom.buildingId;});
     }
 
 }]);

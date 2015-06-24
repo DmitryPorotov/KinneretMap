@@ -1,0 +1,16 @@
+[
+  {
+    "buildingId": "achi",
+    "number":0,
+    "viewBox":"0 0 886.5 1814.4",
+    "hebName": "קומת קרקע",
+    "engName":"Ground floor"
+  },
+  {
+    "buildingId": "achi",
+    "number":1,
+    "viewBox":"0 0 1202.5 2421.25",
+    "hebName": "קומה 1",
+    "engName":"1st floor"
+  }
+]

@@ -21,6 +21,48 @@ mapApp.controller("mapController", ["$scope", "$rootScope", function ($scope, $r
         $rootScope.currentBuilding = null;
     });
 
+    var lastFeatureSelected = null;
+
+    $scope.map.on("click", function (e) {
+        $scope.map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
+            if (feature.getId().indexOf("path") < 0) {
+                var curStyle = layer.getStyle()(feature)[0];
+                feature.setStyle([new ol.style.Style({
+                    fill:curStyle.getFill(),
+                    stroke: new ol.style.Stroke({
+                        color: 'rgb(109,44,146)',
+                        width: 1
+                    })
+                }), new ol.style.Style({
+                    fill: new ol.style.Fill({
+                        color: 'rgba(109,44,146,0.2)'
+                    })
+                })]);
+
+                if (lastFeatureSelected && lastFeatureSelected != feature) {
+                    lastFeatureSelected.setStyle(null);
+                }
+                lastFeatureSelected = feature;
+            }
+        })
+    });
+
+    $scope.map.on("pointermove", function (e) {
+        //detect feature at mouse coords
+        var hit;
+        $scope.map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
+            if (feature.getId().indexOf("path") < 0) {
+                hit = true;
+            }
+        });
+
+        if (hit) {
+            angular.element(document.body).css("cursor", "pointer");
+        } else {
+            angular.element(document.body).css("cursor", "");
+        }
+    })
+
     function init() {
         var styles = {
             'whiteRoof': [new ol.style.Style({
@@ -138,47 +180,6 @@ mapApp.controller("mapController", ["$scope", "$rootScope", function ($scope, $r
             })
         });
 
-        var lastFeatureSelected = null;
-
-        $scope.map.on("click", function (e) {
-            $scope.map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
-                if (feature.getId().indexOf("path") < 0) {
-                    var curStyle = layer.getStyle()(feature)[0];
-                    feature.setStyle([new ol.style.Style({
-                        fill:curStyle.getFill(),
-                        stroke: new ol.style.Stroke({
-                            color: 'rgb(109,44,146)',
-                            width: 1
-                        })
-                    }), new ol.style.Style({
-                        fill: new ol.style.Fill({
-                            color: 'rgba(109,44,146,0.2)'
-                        })
-                    })]);
-
-                    if (lastFeatureSelected && lastFeatureSelected != feature) {
-                        lastFeatureSelected.setStyle(null);
-                    }
-                    lastFeatureSelected = feature;
-                }
-            })
-        });
-
-        $scope.map.on("pointermove", function (e) {
-            //detect feature at mouse coords
-            var hit;
-            $scope.map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
-                if (feature.getId().indexOf("path") < 0) {
-                    hit = true;
-                }
-            });
-
-            if (hit) {
-                angular.element(document.body).css("cursor", "pointer");
-            } else {
-                angular.element(document.body).css("cursor", "");
-            }
-        })
     }
 
 

@@ -4,12 +4,27 @@
         //templateUrl: "templates/catalog.html",
         template:'<div data-angular-treeview="true" data-tree-id="roomsTree" data-tree-model="buildingsData" ></div>',
         link: function (scope, element, attrs) {
-            scope.$watch("rooms+buildings", function () {
-                if(scope.buildings && scope.rooms)
+            scope.$watch("rooms+buildings+floors", function () {
+                if(scope.buildings && scope.rooms && scope.floors)
                 {
-                    debugger
+                    scope.buildings.forEach(function(val){
+                        if(val.nodeType === "building"){
+                            val.children = _.filter(scope.floors,function(f) {
+                                return f.buildingId === val.id;
+                            });
+                            val.children.forEach(function(v){
+                                v.children = _.filter(scope.rooms,function(r){
+                                    return r.buildingId === v.buildingId && r.floor === v.number;
+                                })
+                            });
+                        } else {
+                            val.children = _.filter(scope.rooms, function(r) {
+                                return r.buildingId === val.id;
+                            });
+                        }
+                    });
                 }
-                //scope.buildingsData = scope.rooms;
+                scope.buildingsData = scope.buildings;
 
                 //scope.roomsData = _.groupBy(scope.rooms, function (item) {
                 //    return item.building;

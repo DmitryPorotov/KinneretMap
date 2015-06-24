@@ -39,11 +39,11 @@ div[data-tree-model] li {
   /*background-repeat: no-repeat;
 }*/
 
-div[data-tree-model] li .normal {
-  padding: 1px 10px;
-  background-image: url("../img/file.png");
-  background-repeat: no-repeat;
-}
+/*div[data-tree-model] li .normal {*/
+  /*padding: 1px 10px;*/
+  /*background-image: url("../img/file.png");*/
+  /*background-repeat: no-repeat;*/
+/*}*/
 
 div[data-tree-model] li i, div[data-tree-model] li span {
   cursor: pointer;

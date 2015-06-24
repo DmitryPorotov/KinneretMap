@@ -1,7 +1,5 @@
 ﻿mapApp.service("dataService", ["$http", function ($http) {
 
-    var rooms, buildings;
-
     function getRooms() {
         return $http.get("mockData/rooms.json");
     }
@@ -10,8 +8,13 @@
         return $http.get("mockData/buildings.json");
     }
 
+    function getFloors(){
+        return $http.get("mockData/floors.json");
+    }
+
     return {
         getRooms: getRooms,
-        getBuildings: getBuildings
+        getBuildings: getBuildings,
+        getFloors: getFloors
     }
 }]);
