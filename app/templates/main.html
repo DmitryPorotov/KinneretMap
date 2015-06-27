@@ -23,14 +23,15 @@
 
     <div class="room-details" ng-hide="!isRoomDetailsShown">
         <div>
-            {{curRoom.id}} {{curRoom.type}} number of sits: {{curRoom.sits}} building: {{curRoom.building}}
+            {{curRoom.id}} {{curRoom.type}} number of sits: {{curRoom.sits}} building: {{curRoom.building.hebName}}
         </div>
     </div>
-    <div class="floor-plan" ng-hide="!isFloorPlanShown">
-        <div class="floor-plan-img-container" ng-repeat="fl in floors" ng-show="fl.number == curRoom.floor" >
-            <img ng-src="images/{{fl.buildingId + fl.number}}.png" class="floor-plan-img" >
+    <div class="floor-plan" ng-show="isFloorPlanShown">
+        <div class="floor-plan-img-container" ng-repeat="fl in floors" ng-show="fl == curFloor" >
+            <img ng-src="images/{{fl.building.nodeType == 'oneFloor' ? fl.building.id : fl.buildingId + fl.number}}.png" class="floor-plan-img" >
             <svg ng-attr-view_box="{{fl.viewBox}}" class="floor-plan-svg" >
                 <path ng-repeat="r in fl.children" ng-attr-d="{{r.svgPath}}" ng-class="{selected:curRoom.id==r.id}" ng-click="selectRoom(r.id)" class="svg-room" />
+                <path ng-repeat="r in (fl.room ? fl.room.cubicles : [])" ng-attr-d="{{r.svgPath}}" ng-class="{selected:curRoom.id==r.id}" ng-click="selectRoom(r.id)" class="svg-room" />
             </svg>
         </div>
     </div>

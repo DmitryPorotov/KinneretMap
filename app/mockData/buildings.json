@@ -40,11 +40,60 @@
     "nodeType": "building"
   },
   {
-    "id": "caravan",
+    "id": "groupCaravans500",
     "hebName": "קרוונים",
     "engName": "Caravans",
     "lon":35.59095,
     "lat":32.70553,
-    "nodeType": "caravans"
+    "nodeType": "groupBuildings"
+  },
+  {
+    "id": "groupCaravans200",
+    "hebName": "מכינה",
+    "engName": "Prep School",
+    "lon":35.59023,
+    "lat":32.70390,
+    "nodeType": "groupBuildings"
+  },
+  {
+    "id": "groupDorms",
+    "hebName": "מעונות",
+    "engName": "Dorms",
+    "lon":35.59251,
+    "lat":32.70439,
+    "nodeType": "groupBuildings"
+  },
+  {
+    "id": "caravan510",
+    "engName":"510",
+    "hebName":"510",
+    "buildingId": "groupCaravans500",
+    "lon":35.59075,
+    "lat":32.70548,
+    "type": "",
+    "sits": "",
+    "nodeType":"noFloors"
+  },
+  {
+    "id": "caravan523",
+    "engName":"523",
+    "hebName":"523",
+    "buildingId": "groupCaravans500",
+    "lon":35.59121,
+    "lat":32.70552,
+    "type": "",
+    "sits": "",
+    "nodeType":"noFloors"
+  },
+  {
+    "id": "caravan207",
+    "engName":"207",
+    "hebName":"207",
+    "buildingId": "groupCaravans200",
+    "lon":35.59021,
+    "lat":32.70376,
+    "type": "",
+    "sits": "",
+    "nodeType":"oneFloor"
   }
 ]

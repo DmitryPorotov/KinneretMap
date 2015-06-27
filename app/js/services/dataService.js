@@ -12,9 +12,14 @@
         return $http.get("mockData/floors.json");
     }
 
+    function getCubicles(){
+        return $http.get("mockData/cubicles.json");
+    }
+
     return {
         getRooms: getRooms,
         getBuildings: getBuildings,
-        getFloors: getFloors
+        getFloors: getFloors,
+        getCubicles:getCubicles
     }
 }]);
