@@ -3,4 +3,4 @@
         restrict: "E",
         template:'<div data-angular-treeview="true" data-tree-id="roomsTree" data-tree-model="buildingsData" ></div>'
     }
-})
+});

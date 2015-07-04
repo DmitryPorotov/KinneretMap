@@ -7,32 +7,36 @@
         <button type="button" class="staff-button buttons"></button>
     </div>
 
-    <div class="search-box" ng-hide="!isSearchShown">
+    <div class="search-box" ng-show="isSearchShown">
         <div class="arrow-up"></div>
+        <div class="widget-title-bar">
+            <span class="widget-title">{{langConst.searchResults[langPrefix]}}</span><button class="close-button" type="button" ng-click="closeMenu()">&#x2715;</button>
+        </div>
         <km-search search-results="searchResults" ng-show="isSearchShown"></km-search>
     </div>
 
-    <div class="buildings-catalog-box" ng-hide="!isBuildingsCatalogShown">
+    <div class="buildings-catalog-box" ng-show="isBuildingsCatalogShown">
         <div class="arrow-up"></div>
-        <km-catalog ng-show="isBuildingsCatalogShown"></km-catalog>
+        <div class="widget-title-bar">
+            <span class="widget-title">{{langConst.buildings[langPrefix]}}</span><button class="close-button" type="button" ng-click="closeMenu()">&#x2715;</button>
+        </div>
+        <div class="buildings-catalog-container">
+            <km-catalog ng-show="isBuildingsCatalogShown"></km-catalog>
+        </div>
     </div>
 
-    <div class="staff-catalog-box" ng-hide="!isStaffCatalogShown">
+    <div class="staff-catalog-box" ng-show="isStaffCatalogShown">
         <div class="arrow-up"></div>
     </div>
 
-    <div class="room-details" ng-hide="!isRoomDetailsShown">
+    <div class="room-details" ng-show="isRoomDetailsShown">
         <div>
             {{curRoom.id}} {{curRoom.type}} number of sits: {{curRoom.sits}} building: {{curRoom.building.hebName}}
         </div>
     </div>
+    <div class="floor-plan-container">
     <div class="floor-plan" ng-show="isFloorPlanShown">
-        <div class="floor-plan-img-container" ng-repeat="fl in floors" ng-show="fl == curFloor" >
-            <img ng-src="images/{{fl.building.nodeType == 'oneFloor' ? fl.building.id : fl.buildingId + fl.number}}.png" class="floor-plan-img" >
-            <svg ng-attr-view_box="{{fl.viewBox}}" class="floor-plan-svg" >
-                <path ng-repeat="r in fl.children" ng-attr-d="{{r.svgPath}}" ng-class="{selected:curRoom.id==r.id}" ng-click="selectRoom(r.id)" class="svg-room" />
-                <path ng-repeat="r in (fl.room ? fl.room.cubicles : [])" ng-attr-d="{{r.svgPath}}" ng-class="{selected:curRoom.id==r.id}" ng-click="selectRoom(r.id)" class="svg-room" />
-            </svg>
-        </div>
+        <km-floor-plans></km-floor-plans>
+    </div>
     </div>
 </div>

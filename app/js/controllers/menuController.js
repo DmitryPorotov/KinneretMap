@@ -1,6 +1,8 @@
-﻿mapApp.controller("menuController", ["$scope", "dataService", "$rootScope", "$routeParams",function ($scope, dataService, $rootScope, $routeParams) {
+﻿mapApp.controller("menuController", ["$scope", "dataService", "$rootScope", "$routeParams", "langConst",function ($scope, dataService, $rootScope, $routeParams, langConst) {
     $scope.langPrefix = $routeParams.lang === "he" ? "heb" : "eng";
+    $scope.langConst = langConst;
 
+    $rootScope.isRTL = $routeParams.lang === "he";
     $rootScope.buildings = null;
 
     $scope.searchField = null;
@@ -38,9 +40,19 @@
        $scope.cubicles = data;
     });
 
+    $scope.closeMenu = function() {
+        $scope.isSearchShown = false;
+        $scope.isBuildingsCatalogShown = false;
+        $scope.isStaffCatalogShown = false;
+        $scope.isRoomDetailsShown = false;
+        $scope.isFloorPlanShown = false;
+    };
+
     $scope.search = function () {
         $scope.isBuildingsCatalogShown = false;
         $scope.isStaffCatalogShown = false;
+        $scope.isRoomDetailsShown = false;
+        $scope.isFloorPlanShown = false;
         $scope.isSearchShown = true;
         filterResults($scope.rooms);
     };
@@ -64,10 +76,10 @@
         if($scope.buildings && $scope.rooms && $scope.floors && $scope.cubicles)
         {
             $scope.rooms.forEach(function(r) { r.nodeType = "room"; });
-            $scope.floors.forEach(function(f) { f.nodeType = "floor"; });
+            $scope.floors.forEach(function(f) { f.nodeType = "floor"; f.imgSuffix = ""});
 
             var rootTreeNodes = _.filter($scope.buildings,function(b){
-                return b.nodeType !=="noFloors" && b.nodeType !=="oneFloor";
+                return b.nodeType !== "noFloors" && b.nodeType !== "oneFloor";
             });
 
             rootTreeNodes.forEach(function(b){
@@ -124,10 +136,9 @@
         }
     });
 
-    $scope.$watch("roomsTree.currentNode",function (n, o) {
+    $scope.$watch("roomsTree.currentNode", function (n, o) {
         if (n) {
-            $scope.isRoomDetailsShown = true;
-            switch ($scope.roomsTree.currentNode.nodeType){
+            switch ($scope.roomsTree.currentNode.nodeType) {
                 case  "building":
                 case  "groupBuildings":{
                     $scope.curFloor = null;
@@ -176,17 +187,12 @@
                     $scope.curRoom = null;
                     $scope.isRoomDetailsShown = false;
                     $scope.isFloorPlanShown = true;
+                    $rootScope.locationSelectedFromMenu = n;
                     break;
                 }
             }
+            $scope.roomsTree.currentNode = null;
         }
     });
-
-
-    $scope.selectRoom = function(roomNum) {
-        $scope.curRoom = _.find($scope.rooms, function (room) { return room.id == roomNum;});
-
-        $rootScope.locationSelectedFromMenu = _.find($scope.buildings, function (building) { return building.id == $scope.curRoom.buildingId;});
-    }
 
 }]);

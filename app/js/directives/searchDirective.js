@@ -4,6 +4,6 @@
         scope: {
             searchResults: "="
         },
-        template: '<div ng-repeat="r in searchResults">{{r.id}} - Building: {{r.building}}, floor {{r.floor}}</div>'
+        template: '<div ng-repeat="r in searchResults">{{r.id}} - Building: {{r.buildingId}}, floor {{r.floorNum}}</div>'
     }
 })

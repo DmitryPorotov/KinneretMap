@@ -25,7 +25,7 @@
 (function ( angular ) {
 	'use strict';
 
-	angular.module( 'angularTreeview', [] ).directive( 'treeModel', ['$compile',"$rootScope", "$routeParams", function( $compile, $rootScope,$routeParams ) {
+	angular.module( 'angularTreeview', [] ).directive( 'treeModel', ['$compile', function( $compile ) {
 		return {
 			restrict: 'A',
 			link: function ( scope, element, attrs ) {
@@ -38,23 +38,6 @@
 				//node id
 				var nodeId = attrs.nodeId || 'id';
 
-				//node label
-				var nodeLabel;
-				switch ($routeParams.lang) {
-					case "en":
-					{
-						nodeLabel = "engName";
-						break;
-					}
-					case "he":
-					{
-						nodeLabel = "hebName";
-						break;
-					}
-				}
-					//$rootScope.lang === "en" ? "engName" : "hebName";
-					//attrs.nodeLabel || 'label';
-
 				//children
 				var nodeChildren = attrs.nodeChildren || 'children';
 
@@ -65,8 +48,8 @@
 							'<i class="collapsed ico-plus" data-ng-show="node.' + nodeChildren + '.length && !node.expanded" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
 							'<i class="expanded ico-minus" data-ng-show="node.' + nodeChildren + '.length && node.expanded" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
 							'<i class="normal" data-ng-hide="node.' + nodeChildren + '.length"></i> ' +
-							'<span data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)">{{node.' + nodeLabel + ' || node.id}}</span>' +
-							'<div data-ng-hide="!node.expanded" data-tree-id="' + treeId + '" data-tree-model="node.' + nodeChildren + '" data-node-id=' + nodeId + ' data-node-label=' + nodeLabel + ' data-node-children=' + nodeChildren + '></div>' +
+							'<span data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)">{{node["' + scope.langPrefix + 'Name"] || node.id}}</span>' +
+							'<div data-ng-hide="!node.expanded" data-tree-id="' + treeId + '" data-tree-model="node.' + nodeChildren + '" data-node-id=' + nodeId + ' data-node-label="' + scope.langPrefix + 'Name" data-node-children=' + nodeChildren + '></div>' +
 						'</li>' +
 					'</ul>';
 

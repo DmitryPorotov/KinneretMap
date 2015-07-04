@@ -23,34 +23,22 @@ div[data-tree-model] ul {
 
 div[data-tree-model] li {
   position: relative;
-  padding: 0 0 0 20px;
   line-height: 20px;
 }
+.ltr-body div[data-tree-model] li {
+  padding: 0 0 0 20px;
+}
 
-/*div[data-tree-model] li .expanded {*/
-  /*padding: 1px 10px;*/
-  /*background-image: url("../img/folder.png");*/
-  /*background-repeat: no-repeat;*/
-/*}*/
-
-/*div[data-tree-model] li .collapsed {*/
-  /*padding: 1px 10px;*/
-  /*background-image: url("../img/folder-closed.png");*/
-  /*background-repeat: no-repeat;
-}*/
-
-/*div[data-tree-model] li .normal {*/
-  /*padding: 1px 10px;*/
-  /*background-image: url("../img/file.png");*/
-  /*background-repeat: no-repeat;*/
-/*}*/
+.rtl-body div[data-tree-model] li {
+  padding: 0 20px 0 0;
+}
 
 div[data-tree-model] li i, div[data-tree-model] li span {
   cursor: pointer;
 }
 
-div[data-tree-model] li .selected {
-  background-color: #aaddff;
-  font-weight: bold;
-  padding: 1px 5px;
-}
+/*div[data-tree-model] li .selected {*/
+  /*background-color: #aaddff;*/
+  /*font-weight: bold;*/
+  /*padding: 1px 5px;*/
+/*}*/

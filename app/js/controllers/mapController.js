@@ -298,8 +298,7 @@ mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", funct
             map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
                 if (feature.getId().indexOf("path") && feature.getId().indexOf("group")) {
                     selectFeature(feature,layer);
-                    $rootScope.locationSelectedFromMenu = feature.get("linkedLocation");
-
+                   // $rootScope.locationSelectedFromMenu = feature.get("linkedLocation");
                 }
             })
         });

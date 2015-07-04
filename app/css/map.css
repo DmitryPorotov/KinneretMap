@@ -6,6 +6,20 @@
 	font-weight: normal;
 	font-style: normal;
 }
+
+.ltr-body .ol-zoom {
+    right: .5em;
+    left: auto;
+}
+
+.ltr-body {
+    direction: ltr;
+}
+
+.rtl-body {
+    direction: rtl;
+}
+
 .search-pane {
     width: 30%;
     float: left;
@@ -24,10 +38,19 @@
 	z-index:1000000
 }
 
+.ltr-body #menu-bar {
+    left: 50px;
+    right: auto;
+}
+
 .search-bar * {
     float:left;
     margin-right:2px;
-    box-shadow:1px 1px 1px rgba(0,0,0,0.4);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.ltr-body .search-bar * {
+    float: right;
 }
 
 .search-field {
@@ -38,9 +61,15 @@
 
 .buttons {
     font-family: 'IcoMoon-Free';
-    background-image: linear-gradient(rgb(141,55,180),rgb(109,35,142));
+    background-image: linear-gradient(rgb(161,75,200),rgb(129,55,162));
     border: 0;
     color: white;
+    cursor: pointer;
+    direction: ltr;
+}
+
+.buttons:hover {
+    background-image: linear-gradient(rgb(141,55,180),rgb(109,35,142));
 }
 
 .search-button:before {
@@ -71,7 +100,7 @@
     margin-top:35px;
     background:white;
     position:relative;
-    box-shadow:1px 1px 1px rgba(0,0,0,0.4);
+    box-shadow:0 2px 6px rgba(0,0,0,0.3);
 }
 
 .room-details, .floor-plan {
@@ -88,16 +117,28 @@
     top:-7px;
 }
 
-.search-box .arrow-up {
+.rtl-body .search-box .arrow-up {
     left:15px;
 }
 
-.buildings-catalog-box .arrow-up {
+.rtl-body .buildings-catalog-box .arrow-up {
     right:33px;
 }
 
-.staff-catalog-box .arrow-up {
+.rtl-body .staff-catalog-box .arrow-up {
     right:7px;
+}
+
+.ltr-body .search-box .arrow-up {
+    right:17px;
+}
+
+.ltr-body .buildings-catalog-box .arrow-up {
+    left:31px;
+}
+
+.ltr-body .staff-catalog-box .arrow-up {
+    left: 5px;
 }
 
 .ico-plus, .ico-minus {
@@ -125,8 +166,8 @@
 }
 
 .floor-plan-img-container{
-    height: 500px;
     position: relative;
+    margin: 0 auto;
 }
 .floor-plan-svg {
     position: absolute;
@@ -145,3 +186,108 @@
 .svg-room.selected{
     fill: rgba(141,55,180,0.4);
 }
+
+.close-button {
+    float: right;
+    background: rgba(0,0,0,0);
+    border: none;
+    height: 24px;
+    width: 24px;
+    padding: 0;
+    user-focus: none;
+}
+
+.rtl-body .close-button {
+    float: left;
+}
+
+.widget-title-bar {
+    height: 26px;
+    border-bottom:1px solid gray;
+}
+.widget-title {
+    padding: 0 4px;
+    line-height: 24px;
+}
+
+.buildings-catalog-container {
+    height: 205px;
+    overflow-y: auto;
+
+}
+
+.floor-plan-title-bar {
+    height: 26px;
+    border-bottom: 1px solid gray;
+}
+
+.floor-plan-title {
+    padding: 0 4px;
+    line-height: 24px;
+}
+
+.plus-button, .minus-button {
+    height: 20px;
+    width: 20px;
+    font-size: 8px;
+    line-height: 20px;
+}
+
+.plus-button:before {
+    content: "\ea0a";
+}
+
+.minus-button:before {
+    content: "\ea0b"
+}
+
+.ltr-body .plus-button {
+    margin-left: 2px;
+}
+
+.rtl-body .plus-button {
+    margin-right: 2px;
+}
+
+.floor-plan-popup {
+    position: fixed;
+    z-index: 500001;
+    top: 70px;
+    right: 400px;
+    width: 500px;
+    height: 500px;
+}
+
+.ltr-body .floor-plan-popup {
+    left: 400px;
+    right: auto;
+}
+
+.toggle-dock-button {
+    height: 20px;
+    width: 20px;
+    float: left;
+    margin: 3px;
+    font-size: 9px;
+}
+
+.ltr-body .toggle-dock-button{
+    float: right;
+}
+
+.toggle-dock-button.docked:before {
+    content: '\ea31';
+}
+
+.ltr-body .toggle-dock-button.docked:before {
+    content: '\ea33';
+}
+
+.toggle-dock-button.undocked:before {
+    content: '\ea35';
+}
+
+.ltr-body .toggle-dock-button.undocked:before {
+    content: '\ea37';
+}
+

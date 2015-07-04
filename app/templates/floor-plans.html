@@ -1,0 +1,15 @@
+<div class="floor-plan-title-bar">
+    <button class="buttons plus-button" ng-click="floorAdd(1)"></button>
+    <button class="buttons minus-button" ng-click="floorAdd(-1)"></button>
+    <span class="floor-plan-title">{{curFloor[langPrefix + 'Name']}}</span>
+    <button class="buttons toggle-dock-button" ng-class="{'docked':isDocked,'undocked':!isDocked}" ng-click="toggleDock()"></button>
+</div>
+<div style="padding: 20px 0;">
+    <div km-resizing="[280,300,480,460]" class="floor-plan-img-container" ng-repeat="fl in floors" ng-show="fl == curFloor" >
+        <img ng-src="images/{{(fl.building.nodeType == 'oneFloor' ? fl.building.id : fl.buildingId + fl.number) + fl.imgSuffix}}.jpg" class="floor-plan-img" >
+        <svg ng-attr-view_box="{{fl.viewBox}}" class="floor-plan-svg" >
+            <path ng-repeat="r in fl.children" ng-attr-d="{{r.svgPath}}" ng-class="{selected:curRoom.id==r.id}" ng-click="selectRoom(r.id)" class="svg-room" />
+            <path ng-repeat="r in (fl.room ? fl.room.cubicles : [])" ng-attr-d="{{r.svgPath}}" ng-class="{selected:curRoom.id==r.id}" ng-click="selectRoom(r.id)" class="svg-room" />
+        </svg>
+    </div>
+</div>

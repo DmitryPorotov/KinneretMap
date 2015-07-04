@@ -19,21 +19,23 @@
     <script src="js/controllers/mapController.js"></script>
     <script src="js/directives/searchDirective.js"></script>
     <script src="js/directives/catalogDirective.js"></script>
+    <script src="js/directives/floorPlanDirective.js"></script>
+    <script src="js/directives/resizingDirective.js"></script>
+    <script src="js/controllers/bodyController.js"></script>
 
-
-    <!--<script src="js/geoJsonData.js"></script>-->
     <script src="js/buildings.js"></script>
     <script src="js/mehina.js"></script>
     <script src="js/dorms.js"></script>
     <script src="js/lib/ol-debug.js"></script>
 </head>
-<body>
+<body ng-controller="bodyController" class="{{isRTL ? 'rtl-body':'ltr-body'}}">
 <div style="position: fixed; top:0;left:50px;z-index: 500000">
-    <a href="#/en">en</a>
-    <a href="#/he">he</a>
+    <a href="#/en" ng-click="switchDir(false)">en</a>
+    <a href="#/he" ng-click="switchDir(true)">he</a>
 </div>
-    <div id="map" class="map" ng-controller="mapController"></div>
+<div id="map" class="map" ng-controller="mapController" style="direction: ltr"></div>
+<div ng-view=""></div>
 
-    <div ng-view=""></div>
+<div class="floor-plan-popup"  ng-show="isPopUpShown"></div>
 </body>
 </html>
