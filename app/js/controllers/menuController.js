@@ -143,26 +143,26 @@
                 case  "groupBuildings":{
                     $scope.curFloor = null;
                     $scope.curRoom = null;
-                    $rootScope.locationSelectedFromMenu = n;
                     $scope.isFloorPlanShown = false;
                     $scope.isRoomDetailsShown = false;
+                    $rootScope.locationSelectedFromMenu = n;
                     break;
                 }
                 case "groupOther":{
                     $scope.curFloor = null;
                     $scope.curRoom = null;
-                    $rootScope.locationSelectedFromMenu = null;
                     $scope.isFloorPlanShown = false;
                     $scope.isRoomDetailsShown = false;
+                    $rootScope.locationSelectedFromMenu = null;
                     break;
                 }
                 case  "room":{
-                    $rootScope.locationSelectedFromMenu = n.floor.building;
                     $scope.curFloor = n.floor;
                     $scope.curBuilding = n.floor.building;//TODO why do I need this?
                     $scope.curRoom = n;
                     $scope.isFloorPlanShown = true;
                     $scope.isRoomDetailsShown = true;
+                    $rootScope.locationSelectedFromMenu = n.floor.building;
                     break;
                 }
                 case  "floor":{
@@ -170,16 +170,16 @@
                     $scope.curRoom = null;
                     $scope.curBuilding = n.building;
                     $scope.isFloorPlanShown = true;
-                    $rootScope.locationSelectedFromMenu = n.building;
                     $scope.isRoomDetailsShown = false;
+                    $rootScope.locationSelectedFromMenu = n.building;
                     break;
                 }
                 case "noFloors": {
                     $scope.curFloor = null;
                     $scope.curRoom = n;
-                    $rootScope.locationSelectedFromMenu = n;
                     $scope.isFloorPlanShown = false;
                     $scope.isRoomDetailsShown = true;
+                    $rootScope.locationSelectedFromMenu = n;
                     break;
                 }
                 case  "oneFloor":{
@@ -194,5 +194,14 @@
             $scope.roomsTree.currentNode = null;
         }
     });
+
+    $rootScope.$watch("locationSelectedFromMap",function(n) {
+        if (n) {
+            $scope.curRoom = n;
+            $scope.isFloorPlanShown = false;
+            $scope.isRoomDetailsShown = true;
+            $scope.isBuildingsCatalogShown = true;
+        }
+    })
 
 }]);

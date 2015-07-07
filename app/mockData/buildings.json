@@ -3,6 +3,8 @@
     "id": "achi",
     "hebName": "בית אחי",
     "engName": "Achi engineering school",
+    "hebFullName": "בית הספר להנדסה ע\"ש אחי רכוב ז\"ל",
+    "engFullName": "Achi Racov School of Engineering",
     "lon":35.59297,
     "lat":32.70562,
     "nodeType": "building"
@@ -11,6 +13,8 @@
     "id": "library",
     "hebName": "ספרייה",
     "engName": "Library",
+    "hebFullName": "הספרייה האקדמית ע\"ש משפחת יידל ורוברט סקלאר",
+    "engFullName": "Skar Family Library",
     "lon":35.59261,
     "lat":32.70562,
     "nodeType": "building"
@@ -19,6 +23,8 @@
     "id": "triguboff",
     "hebName": "טריגובוף",
     "engName": "Triguboff",
+    "hebFullName": "מרכז המדעים והטכנולוגיה ע\"ש הארי טריגובוף",
+    "engFullName": "Harry Triguboff Sciences Building",
     "lon":35.59184,
     "lat":32.70542,
     "nodeType": "building"
@@ -27,6 +33,8 @@
     "id": "alperin",
     "hebName": "אלפרין",
     "engName": "Alperin",
+    "hebFullName": "בניין אלפרין",
+    "engFullName": "Alperin Regional College",
     "lon":35.59117,
     "lat":32.70524,
     "nodeType": "building"
@@ -35,22 +43,24 @@
     "id": "research",
     "hebName": "מחקר",
     "engName": "Research",
+    "hebFullName": "צמח נסיונות",
+    "engFullName": "Zemach Agricultural Experiments",
     "lon":35.59075,
     "lat":32.70524,
     "nodeType": "building"
   },
   {
     "id": "groupCaravans500",
-    "hebName": "קרוונים",
-    "engName": "Caravans",
+    "hebName": "מתחם הקראוונים",
+    "engName": "Trailers",
     "lon":35.59095,
     "lat":32.70553,
     "nodeType": "groupBuildings"
   },
   {
     "id": "groupCaravans200",
-    "hebName": "מכינה",
-    "engName": "Prep School",
+    "hebName": "מכינה קדם אקדמית",
+    "engName": "Academic Preparatory Programs",
     "lon":35.59023,
     "lat":32.70390,
     "nodeType": "groupBuildings"

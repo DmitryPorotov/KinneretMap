@@ -5,7 +5,8 @@
     }
 
     function getBuildings(){
-        return $http.get("mockData/buildings.json");
+        return $http.get("http://localhost/api/buildings.php");
+       // return $http.get("mockData/buildings.json");
     }
 
     function getFloors(){

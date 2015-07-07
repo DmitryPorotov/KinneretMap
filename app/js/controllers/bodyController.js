@@ -8,7 +8,7 @@ mapApp.controller("bodyController", ["$scope","$rootScope", function ($scope, $r
 
     $scope.switchDir = function(isRTL){
         $scope.isRTL = isRTL;
-    }
+    };
 
     $scope.isPopUpShown = false;
     $rootScope.$on('showPopUp',function(){

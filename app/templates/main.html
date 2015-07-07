@@ -30,7 +30,10 @@
     </div>
 
     <div class="room-details" ng-show="isRoomDetailsShown">
-        <div>
+        <div ng-show="curRoom.nodeType == 'room' || curRoom.nodeType == 'noFloor'">
+            {{curRoom.id}} {{curRoom.type}} number of sits: {{curRoom.sits}} building: {{curRoom.building.hebName}}
+        </div>
+        <div ng-show="curRoom.nodeType == 'building'">
             {{curRoom.id}} {{curRoom.type}} number of sits: {{curRoom.sits}} building: {{curRoom.building.hebName}}
         </div>
     </div>
