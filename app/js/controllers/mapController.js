@@ -88,7 +88,7 @@ mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", funct
                 }));
                 map.setView(new ol.View({
                     center: ol.proj.transform([loc.lon, loc.lat], 'EPSG:4326', 'EPSG:3857'),
-                    zoom: 19
+                    zoom: map.getView().getZoom() < 18 ? 19 :map.getView().getZoom()
                 }));
             }, 1);
         }
@@ -313,9 +313,9 @@ mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", funct
             });
 
             if (hit) {
-                angular.element(document.body).css("cursor", "pointer");
+                angular.element(window.map).css("cursor", "pointer");
             } else {
-                angular.element(document.body).css("cursor", "");
+                angular.element(window.map).css("cursor", "");
             }
         });
 

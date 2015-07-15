@@ -10,11 +10,4 @@ mapApp.controller("bodyController", ["$scope","$rootScope", function ($scope, $r
         $scope.isRTL = isRTL;
     };
 
-    $scope.isPopUpShown = false;
-    $rootScope.$on('showPopUp',function(){
-        $scope.isPopUpShown = true;
-    });
-    $rootScope.$on('hidePopUp',function(){
-        $scope.isPopUpShown = false;
-    });
 }]);

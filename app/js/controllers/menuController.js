@@ -122,7 +122,7 @@
                             if(b2.floor) {
                                 b2.floor.building = b2;
                                 b2.floor.cubicles = _.filter($scope.cubicles, function (c) {
-                                    c.floorNum === b2.floor.number && c.buildingId === b2.floor.buildingId;
+                                   return c.floorNum === b2.floor.number && c.buildingId === b2.floor.buildingId;
                                 });
                             }
                         });

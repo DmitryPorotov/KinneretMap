@@ -2,6 +2,8 @@
   {
     "id": 800,
     "buildingId": "achi",
+    "hebName":"800",
+    "engName":"800",
     "floorNum": 0,
     "type": "",
     "sits": "",
