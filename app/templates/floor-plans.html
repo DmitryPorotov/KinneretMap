@@ -8,7 +8,17 @@
     <div km-resizing="[280,300,480,460]" class="floor-plan-img-container" ng-repeat="fl in floors" ng-show="fl == curFloor" >
         <img ng-src="images/{{(fl.building.nodeType == 'oneFloor' ? fl.building.id : fl.buildingId + fl.number) + fl.imgSuffix}}.jpg" class="floor-plan-img" >
         <svg ng-attr-view_box="{{fl.viewBox}}" class="floor-plan-svg" >
-            <path ng-repeat="r in fl.children" ng-attr-d="{{r.svgPath}}" ng-class="{selected:curRoom.id==r.id}" ng-click="selectRoom(r.id)" class="svg-room" />
+            <g ng-repeat="r in fl.children" class="svg-room" ng-click="selectRoom(r.id)" ng-class="{selected:curRoom.id==r.id}">
+                <path ng-attr-d="{{r.svgPath}}"/>
+                <text ng-repeat="t in (r[langPrefix + 'OnMapName'] || r['hebOnMapName']).split('(n)')"
+                      ng-attr-x="{{r[langPrefix + 'LabelPosX'] || r['hebLabelPosX']}}"
+                      ng-attr-y="{{(r[langPrefix + 'LabelPosY'] || r['hebLabelPosY']) + (r[langPrefix + 'FontSize'] || r['hebFontSize']) * $index}}"
+                      ng-attr-style="font-size:{{r[langPrefix + 'FontSize'] || r['hebFontSize']}}px">
+                    <tspan>{{t}}</tspan>
+                </text>
+                <title>{{r[langPrefix + "ToolTip"] || r["hebToolTip"]}}</title>
+            </g>
+
             <path ng-repeat="r in (fl.room ? fl.room.cubicles : [])" ng-attr-d="{{r.svgPath}}" ng-class="{selected:curRoom.id==r.id}" ng-click="selectRoom(r.id)" class="svg-room" />
         </svg>
     </div>

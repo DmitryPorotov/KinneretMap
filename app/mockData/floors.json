@@ -1,23 +1,114 @@
 [
-  {
-    "buildingId": "achi",
-    "number":0,
-    "viewBox":"0 0 886.5 1814.4",
-    "hebName": "קומת קרקע",
-    "engName":"Ground floor"
-  },
-  {
-    "buildingId": "achi",
-    "number":1,
-    "viewBox":"0 0 1202.5 2421.25",
-    "hebName": "קומה 1",
-    "engName":"1st floor"
-  },
-  {
-    "buildingId": "caravan207",
-    "number":0,
-    "viewBox":"0 0 224.0625 201.5625",
-    "hebName": "",
-    "engName": ""
-  }
+	{
+		"buildingId" : "achi",
+		"number" : 0,
+		"hebName" : "קומת קרקע",
+		"engName" : "Ground floor",
+		"viewBox" : "0 0 1182.5 2420"
+	},
+	{
+		"buildingId" : "achi",
+		"number" : 1,
+		"hebName" : "קומה 1",
+		"engName" : "1st floor",
+		"viewBox" : "0 0 1202.5 2421.25"
+	},
+	{
+		"buildingId" : "achi",
+		"number" : 2,
+		"hebName" : "קומה 2",
+		"engName" : "2nd floor",
+		"viewBox" : "0 0 1202.5 2441.25"
+	},
+	{
+		"buildingId" : "achi",
+		"number" : 3,
+		"hebName" : "קומה 3",
+		"engName" : "3rd floor",
+		"viewBox" : "0 0 1202.5 2441.25"
+	},
+	{
+		"buildingId" : "alperin",
+		"number" : 0,
+		"hebName" : "קומת מרתך",
+		"engName" : "Basement floor",
+		"viewBox" : "0 0 1407.1875 598.125"
+	},
+	{
+		"buildingId" : "alperin",
+		"number" : 1,
+		"hebName" : "קומה 1",
+		"engName" : "1st floor",
+		"viewBox" : "0 0 2000 900"
+	},
+	{
+		"buildingId" : "alperin",
+		"number" : 2,
+		"hebName" : "קומה 2",
+		"engName" : "2nd floor",
+		"viewBox" : "0 0 1548.75 935.625"
+	},
+	{
+		"buildingId" : "alperin",
+		"number" : 3,
+		"hebName" : "קומה 3",
+		"engName" : "3rd floor",
+		"viewBox" : "0 0 1548.75 935.625"
+	},
+	{
+		"buildingId" : "caravan207",
+		"number" : 0,
+		"hebName" : "",
+		"engName" : "",
+		"viewBox" : "0 0 185.33772 149.75288"
+	},
+	{
+		"buildingId" : "library",
+		"number" : 0,
+		"hebName" : "קומת קרקע",
+		"engName" : "Ground floor",
+		"viewBox" : "0 0 1473.75 1317.1875"
+	},
+	{
+		"buildingId" : "library",
+		"number" : 1,
+		"hebName" : "קומה 1",
+		"engName" : "1st floor",
+		"viewBox" : "0 0 1434.375 1648.125"
+	},
+	{
+		"buildingId" : "library",
+		"number" : 2,
+		"hebName" : "קומה 2",
+		"engName" : "2nd floor",
+		"viewBox" : "0 0 815.625 1648.125"
+	},
+	{
+		"buildingId" : "library",
+		"number" : 3,
+		"hebName" : "קומה 3",
+		"engName" : "3rd floor",
+		"viewBox" : "0 0 815.625 1648.125"
+	},
+	{
+		"buildingId" : "triguboff",
+		"number" : 0,
+		"hebName" : "קומת קרקע",
+		"engName" : "Ground floor",
+		"viewBox" : "0 0 3353.4375 1205.625"
+	},
+	{
+		"buildingId" : "triguboff",
+		"number" : 1,
+		"hebName" : "קומה 1",
+		"engName" : "1st floor",
+		"viewBox" : "0 0 3352.5 1326.5625"
+	},
+	{
+		"buildingId" : "triguboff",
+		"number" : 2,
+		"hebName" : "קומה 2",
+		"engName" : "2nd floor",
+		"viewBox" : "0 0 3353.4375 1326.5625"
+	}
 ]

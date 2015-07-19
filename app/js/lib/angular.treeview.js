@@ -48,7 +48,7 @@
 							'<i class="collapsed ico-plus" data-ng-show="node.' + nodeChildren + '.length && !node.expanded" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
 							'<i class="expanded ico-minus" data-ng-show="node.' + nodeChildren + '.length && node.expanded" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
 							'<i class="normal" data-ng-hide="node.' + nodeChildren + '.length"></i> ' +
-							'<span data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)">{{node["' + scope.langPrefix + 'Name"] || node["' + scope.langPrefix + 'FullName"]}}</span>' +
+							'<span data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)">{{node["' + scope.langPrefix + 'Name"]}}</span>' +
 							'<div data-ng-hide="!node.expanded" data-tree-id="' + treeId + '" data-tree-model="node.' + nodeChildren + '" data-node-id=' + nodeId + ' data-node-label="' + scope.langPrefix + 'Name" data-node-children=' + nodeChildren + '></div>' +
 						'</li>' +
 					'</ul>';

@@ -10,24 +10,27 @@ mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", funct
                 }
 
                 var text = "";
-                var labelName = "hebName";
+                var prefix = "heb";
                 switch ($routeParams.lang) {
                     case "en":
                     {
-                        labelName = "engName";
+                        prefix = "eng";
                         break;
                     }
                     case "he":
                     {
-                        labelName = "hebName";
+                        prefix = "heb";
                         break;
                     }
                 }
 
-                text = feature.get("linkedLocation")[labelName];
+                var linkedLoc = feature.get("linkedLocation");
 
-                if(text.length > 20) {
-                    text.replace(' ', '\n');
+                if(linkedLoc[prefix + "OnMapName"] !== null && linkedLoc[prefix + "OnMapName"] !== undefined) {
+                    text = linkedLoc[prefix + "OnMapName"];
+                }
+                else {
+                    text = linkedLoc[prefix + "Name"];
                 }
 
                 return text;
