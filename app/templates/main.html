@@ -37,9 +37,9 @@
             {{curRoom.id}} {{curRoom.type}} number of seats: {{curRoom.sits}} building: {{curRoom.building.hebName}}
         </div>
     </div>
-    <div class="floor-plan-container">
-    <div class="floor-plan" ng-show="isFloorPlanShown">
+    <!--<div class="floor-plan-container">-->
+    <div class="floor-plan" ng-class="{'floor-plan-popup': isPopupShown}" ng-show="isFloorPlanShown">
         <km-floor-plans></km-floor-plans>
     </div>
-    </div>
+    <!--</div>-->
 </div>

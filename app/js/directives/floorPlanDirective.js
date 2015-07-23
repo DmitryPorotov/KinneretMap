@@ -28,12 +28,10 @@ mapApp.directive("kmFloorPlans",["$rootScope", function($rootScope) {
             scope.isDocked = true;
             scope.toggleDock = function () {
                 if (scope.isDocked) {
-                    angular.element(document.querySelector('.floor-plan-popup')).append(angular.element(document.querySelector('.floor-plan')));
                     $rootScope.$broadcast('showPopUp');
                     scope.curFloor.imgSuffix = "big";
                 }
                 else {
-                    angular.element(document.querySelector('.floor-plan-container')).append(angular.element(document.querySelector('.floor-plan')));
                     $rootScope.$broadcast('hidePopUp');
                     scope.curFloor.imgSuffix = "";
                 }

@@ -24,6 +24,16 @@
     $scope.curFloor = null;
     $scope.curBuilding = null;
 
+    $scope.isPopupShown = false;
+
+    $rootScope.$on('showPopUp',function(){
+        $scope.isPopupShown = true;
+    });
+
+    $rootScope.$on('hidePopUp',function(){
+        $scope.isPopupShown = false;
+    });
+
     dataService.getRooms().success(function (data) {
         $scope.rooms = data;
     });
@@ -137,63 +147,49 @@
     });
 
     $scope.$watch("roomsTree.currentNode", function (n, o) {
+        var handleCurrentNodeChange = function (curFloor,curRoom,isRoomDetailsShown,isFloorPlanShown,locationSelectedFromMenu) {
+            $scope.curFloor = curFloor;
+            $scope.curRoom = curRoom;
+            $scope.isRoomDetailsShown = isRoomDetailsShown;
+            $scope.isFloorPlanShown = isFloorPlanShown;
+            $rootScope.locationSelectedFromMenu = locationSelectedFromMenu;
+            if(curFloor){
+                curFloor.imgSuffix = $scope.isPopupShown ? 'big':'';
+            }
+        }
         if (n) {
             switch ($scope.roomsTree.currentNode.nodeType) {
                 case  "building":
                 case  "groupBuildings":{
-                    $scope.curFloor = null;
-                    $scope.curRoom = null;
-                    $scope.isFloorPlanShown = false;
-                    $scope.isRoomDetailsShown = false;
-                    $rootScope.locationSelectedFromMenu = n;
+                    handleCurrentNodeChange(null,null,false,false,n);
                     break;
                 }
                 case "groupOther":{
-                    $scope.curFloor = null;
-                    $scope.curRoom = null;
-                    $scope.isFloorPlanShown = false;
-                    $scope.isRoomDetailsShown = false;
-                    $rootScope.locationSelectedFromMenu = null;
+                    handleCurrentNodeChange(null,null,false,false,null);
                     break;
                 }
                 case  "room":{
-                    $scope.curFloor = n.floor;
-                    $scope.curBuilding = n.floor.building;//TODO why do I need this?
-                    $scope.curRoom = n;
-                    $scope.isFloorPlanShown = true;
-                    $scope.isRoomDetailsShown = true;
-                    $rootScope.locationSelectedFromMenu = n.floor.building;
+                    handleCurrentNodeChange(n.floor,n,true,true,n.floor.building);
                     break;
                 }
                 case  "floor":{
-                    $scope.curFloor = n;
-                    $scope.curRoom = null;
-                    $scope.curBuilding = n.building;
-                    $scope.isFloorPlanShown = true;
-                    $scope.isRoomDetailsShown = false;
-                    $rootScope.locationSelectedFromMenu = n.building;
+                    handleCurrentNodeChange(n,null,false,true,n.building);
                     break;
                 }
                 case "noFloors": {
-                    $scope.curFloor = null;
-                    $scope.curRoom = n;
-                    $scope.isFloorPlanShown = false;
-                    $scope.isRoomDetailsShown = true;
-                    $rootScope.locationSelectedFromMenu = n;
+                    handleCurrentNodeChange(null,n,true,false,n);
                     break;
                 }
                 case  "oneFloor":{
-                    $scope.curFloor = n.floor;
-                    $scope.curRoom = null;
-                    $scope.isRoomDetailsShown = false;
-                    $scope.isFloorPlanShown = true;
-                    $rootScope.locationSelectedFromMenu = n;
+                    handleCurrentNodeChange(n.floor,null,false,true,n);
                     break;
                 }
             }
             $scope.roomsTree.currentNode = null;
         }
     });
+
+
 
     $rootScope.$watch("locationSelectedFromMap",function(n) {
         if (n) {

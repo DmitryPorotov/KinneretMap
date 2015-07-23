@@ -15,11 +15,14 @@ mapApp.directive("kmResizing",[function() {
             });
 
             scope.resizeTo = scope.resizeTo || function(e,img,w,h) {
-                    var mW = maxSize[0],mH = maxSize[1];
-                    if(img[0].src.indexOf("big") > -1) {
-                        mW = maxSize[2];
-                        mH = maxSize[3];
+                    var sizeNum = 0;
+                    if (img[0].src.indexOf("big") > -1){
+                        sizeNum = 1;
+                        if(window.innerHeight > 800 && window.innerWidth > 1200){
+                            sizeNum = 2;
+                        }
                     }
+                    var mW = maxSize[sizeNum][0],mH = maxSize[sizeNum][1];
 
                     if (w > mW) {
                         var ratio = mW / w;

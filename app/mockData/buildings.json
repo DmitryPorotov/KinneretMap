@@ -1,597 +1,738 @@
 [
-	{
-		"id" : "achi",
-		"buildingId" : "",
-		"hebName" : "בית אחי",
-		"engName" : "Achi engineering school",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "בית הספר להנדסה ע\"ש אחי רכוב ז\"ל",
-		"engFullName" : "Achi Racov School of Engineering",
-		"lon" : 35.593,
-		"lat" : 32.7056,
-		"nodeType" : "building",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : "achi,8"
-	},
-	{
-		"id" : "alperin",
-		"buildingId" : "",
-		"hebName" : "אלפרין",
-		"engName" : "Alperin",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "בניין אלפרין",
-		"engFullName" : "Alperin Regional College",
-		"lon" : 35.5912,
-		"lat" : 32.7052,
-		"nodeType" : "building",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan-gifted3",
-		"buildingId" : "groupCaravans500",
-		"hebName" : "קרוון מחוננים 3",
-		"engName" : "Gifted children trailer 3",
-		"hebOnMapName" : "",
-		"engOnMapName" : "",
-		"hebFullName" : "קרוון מחוננים 3",
-		"engFullName" : "Gifted children trailer 3",
-		"lon" : 35.5907,
-		"lat" : 32.7056,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan201",
-		"buildingId" : "groupCaravans200",
-		"hebName" : "201",
-		"engName" : "201",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5904,
-		"lat" : 32.7041,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan202",
-		"buildingId" : "groupCaravans200",
-		"hebName" : "202",
-		"engName" : "202",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5905,
-		"lat" : 32.7041,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan203",
-		"buildingId" : "groupCaravans200",
-		"hebName" : "203",
-		"engName" : "203",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5905,
-		"lat" : 32.704,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan204",
-		"buildingId" : "groupCaravans200",
-		"hebName" : "204",
-		"engName" : "204",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5906,
-		"lat" : 32.7039,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan205",
-		"buildingId" : "groupCaravans200",
-		"hebName" : "205",
-		"engName" : "205",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5906,
-		"lat" : 32.7039,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan206",
-		"buildingId" : "groupCaravans200",
-		"hebName" : "206",
-		"engName" : "206",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5905,
-		"lat" : 32.7038,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan207",
-		"buildingId" : "groupCaravans200",
-		"hebName" : "207",
-		"engName" : "207",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5903,
-		"lat" : 32.7039,
-		"nodeType" : "oneFloor",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan208",
-		"buildingId" : "groupCaravans200",
-		"hebName" : "208",
-		"engName" : "208",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5901,
-		"lat" : 32.7038,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan209",
-		"buildingId" : "groupCaravans200",
-		"hebName" : "209",
-		"engName" : "209",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5901,
-		"lat" : 32.7038,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan210",
-		"buildingId" : "groupCaravans200",
-		"hebName" : "210",
-		"engName" : "210",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.59,
-		"lat" : 32.7039,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan211",
-		"buildingId" : "groupCaravans200",
-		"hebName" : "211",
-		"engName" : "211",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5901,
-		"lat" : 32.7039,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan212",
-		"buildingId" : "groupCaravans200",
-		"hebName" : "212",
-		"engName" : "212",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.59,
-		"lat" : 32.704,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan213",
-		"buildingId" : "groupCaravans200",
-		"hebName" : "213",
-		"engName" : "213",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5902,
-		"lat" : 32.704,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan214",
-		"buildingId" : "groupCaravans200",
-		"hebName" : "214",
-		"engName" : "214",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.59,
-		"lat" : 32.704,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan502",
-		"buildingId" : "groupCaravans500",
-		"hebName" : "502",
-		"engName" : "502",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5907,
-		"lat" : 32.7055,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan503",
-		"buildingId" : "groupCaravans500",
-		"hebName" : "503",
-		"engName" : "503",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5907,
-		"lat" : 32.7055,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan510",
-		"buildingId" : "groupCaravans500",
-		"hebName" : "510",
-		"engName" : "510",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5908,
-		"lat" : 32.7055,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan511",
-		"buildingId" : "groupCaravans500",
-		"hebName" : "511",
-		"engName" : "511",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5909,
-		"lat" : 32.7056,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan512",
-		"buildingId" : "groupCaravans500",
-		"hebName" : "512",
-		"engName" : "512",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.591,
-		"lat" : 32.7056,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan513",
-		"buildingId" : "groupCaravans500",
-		"hebName" : "513",
-		"engName" : "513",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.591,
-		"lat" : 32.7056,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan514",
-		"buildingId" : "groupCaravans500",
-		"hebName" : "514",
-		"engName" : "514",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5909,
-		"lat" : 32.7055,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan515",
-		"buildingId" : "groupCaravans500",
-		"hebName" : "515",
-		"engName" : "515",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5911,
-		"lat" : 32.7055,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan516",
-		"buildingId" : "groupCaravans500",
-		"hebName" : "516",
-		"engName" : "516",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5909,
-		"lat" : 32.7054,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan517",
-		"buildingId" : "groupCaravans500",
-		"hebName" : "517",
-		"engName" : "517",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5911,
-		"lat" : 32.7054,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan518",
-		"buildingId" : "groupCaravans500",
-		"hebName" : "518",
-		"engName" : "518",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.591,
-		"lat" : 32.7054,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "caravan523",
-		"buildingId" : "groupCaravans500",
-		"hebName" : "523",
-		"engName" : "523",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5912,
-		"lat" : 32.7055,
-		"nodeType" : "noFloors",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "groupCaravans200",
-		"buildingId" : "",
-		"hebName" : "מכינה קדם אקדמית",
-		"engName" : "Academic Preparatory Programs",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5902,
-		"lat" : 32.7039,
-		"nodeType" : "groupBuildings",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "groupCaravans500",
-		"buildingId" : "",
-		"hebName" : "מתחם הקראוונים",
-		"engName" : "Trailers",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.591,
-		"lat" : 32.7055,
-		"nodeType" : "groupBuildings",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "groupDorms",
-		"buildingId" : "",
-		"hebName" : "מעונות",
-		"engName" : "Dorms",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "",
-		"engFullName" : "",
-		"lon" : 35.5925,
-		"lat" : 32.7044,
-		"nodeType" : "groupBuildings",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "library",
-		"buildingId" : "",
-		"hebName" : "ספרייה",
-		"engName" : "Library",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "הספרייה האקדמית ע\"ש משפחת יידל ורוברט סקלאר",
-		"engFullName" : "Skar Family Library",
-		"lon" : 35.5926,
-		"lat" : 32.7056,
-		"nodeType" : "building",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "research",
-		"buildingId" : "",
-		"hebName" : "מחקר",
-		"engName" : "Research",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "צמח נסיונות",
-		"engFullName" : "Zemach Agricultural Experiments",
-		"lon" : 35.5908,
-		"lat" : 32.7052,
-		"nodeType" : "building",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	},
-	{
-		"id" : "triguboff",
-		"buildingId" : "",
-		"hebName" : "טריגובוף",
-		"engName" : "Triguboff",
-		"hebOnMapName" : null,
-		"engOnMapName" : null,
-		"hebFullName" : "מרכז המדעים והטכנולוגיה ע\"ש הארי טריגובוף",
-		"engFullName" : "Harry Triguboff Sciences Building",
-		"lon" : 35.5918,
-		"lat" : 32.7054,
-		"nodeType" : "building",
-		"type" : null,
-		"seats" : null,
-		"hebTags" : "",
-		"engTags" : ""
-	}
+  {
+	"id": "achi",
+	"buildingId": "",
+	"hebName": "בית אחי",
+	"engName": "Achi engineering school",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "בית הספר להנדסה ע\"ש אחי רכוב ז\"ל",
+	"engFullName": "Achi Racov School of Engineering",
+	"lon": 35.593,
+	"lat": 32.7056,
+	"nodeType": "building",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  "achi",
+	  "8"
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "alperin",
+	"buildingId": "",
+	"hebName": "אלפרין",
+	"engName": "Alperin",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "בניין אלפרין",
+	"engFullName": "Alperin Regional College",
+	"lon": 35.5912,
+	"lat": 32.7052,
+	"nodeType": "building",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan-gifted3",
+	"buildingId": "groupCaravans500",
+	"hebName": "קרוון מחוננים 3",
+	"engName": "Gifted children trailer 3",
+	"hebOnMapName": "",
+	"engOnMapName": "",
+	"hebFullName": "קרוון מחוננים 3",
+	"engFullName": "Gifted children trailer 3",
+	"lon": 35.5907,
+	"lat": 32.7056,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan201",
+	"buildingId": "groupCaravans200",
+	"hebName": "201",
+	"engName": "201",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5904,
+	"lat": 32.7041,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan202",
+	"buildingId": "groupCaravans200",
+	"hebName": "202",
+	"engName": "202",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5905,
+	"lat": 32.7041,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan203",
+	"buildingId": "groupCaravans200",
+	"hebName": "203",
+	"engName": "203",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5905,
+	"lat": 32.704,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan204",
+	"buildingId": "groupCaravans200",
+	"hebName": "204",
+	"engName": "204",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5906,
+	"lat": 32.7039,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan205",
+	"buildingId": "groupCaravans200",
+	"hebName": "205",
+	"engName": "205",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5906,
+	"lat": 32.7039,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan206",
+	"buildingId": "groupCaravans200",
+	"hebName": "206",
+	"engName": "206",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5905,
+	"lat": 32.7038,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan207",
+	"buildingId": "groupCaravans200",
+	"hebName": "207",
+	"engName": "207",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5903,
+	"lat": 32.7039,
+	"nodeType": "oneFloor",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan208",
+	"buildingId": "groupCaravans200",
+	"hebName": "208",
+	"engName": "208",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5901,
+	"lat": 32.7038,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan209",
+	"buildingId": "groupCaravans200",
+	"hebName": "209",
+	"engName": "209",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5901,
+	"lat": 32.7038,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan210",
+	"buildingId": "groupCaravans200",
+	"hebName": "210",
+	"engName": "210",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.59,
+	"lat": 32.7039,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan211",
+	"buildingId": "groupCaravans200",
+	"hebName": "211",
+	"engName": "211",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5901,
+	"lat": 32.7039,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan212",
+	"buildingId": "groupCaravans200",
+	"hebName": "212",
+	"engName": "212",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.59,
+	"lat": 32.704,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan213",
+	"buildingId": "groupCaravans200",
+	"hebName": "213",
+	"engName": "213",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5902,
+	"lat": 32.704,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan214",
+	"buildingId": "groupCaravans200",
+	"hebName": "214",
+	"engName": "214",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.59,
+	"lat": 32.704,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan502",
+	"buildingId": "groupCaravans500",
+	"hebName": "502",
+	"engName": "502",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5907,
+	"lat": 32.7055,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan503",
+	"buildingId": "groupCaravans500",
+	"hebName": "503",
+	"engName": "503",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5907,
+	"lat": 32.7055,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan510",
+	"buildingId": "groupCaravans500",
+	"hebName": "510",
+	"engName": "510",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5908,
+	"lat": 32.7055,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan511",
+	"buildingId": "groupCaravans500",
+	"hebName": "511",
+	"engName": "511",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5909,
+	"lat": 32.7056,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan512",
+	"buildingId": "groupCaravans500",
+	"hebName": "512",
+	"engName": "512",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.591,
+	"lat": 32.7056,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan513",
+	"buildingId": "groupCaravans500",
+	"hebName": "513",
+	"engName": "513",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.591,
+	"lat": 32.7056,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan514",
+	"buildingId": "groupCaravans500",
+	"hebName": "514",
+	"engName": "514",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5909,
+	"lat": 32.7055,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan515",
+	"buildingId": "groupCaravans500",
+	"hebName": "515",
+	"engName": "515",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5911,
+	"lat": 32.7055,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan516",
+	"buildingId": "groupCaravans500",
+	"hebName": "516",
+	"engName": "516",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5909,
+	"lat": 32.7054,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan517",
+	"buildingId": "groupCaravans500",
+	"hebName": "517",
+	"engName": "517",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5911,
+	"lat": 32.7054,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan518",
+	"buildingId": "groupCaravans500",
+	"hebName": "518",
+	"engName": "518",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.591,
+	"lat": 32.7054,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "caravan523",
+	"buildingId": "groupCaravans500",
+	"hebName": "523",
+	"engName": "523",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5912,
+	"lat": 32.7055,
+	"nodeType": "noFloors",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "groupCaravans200",
+	"buildingId": "",
+	"hebName": "מכינה קדם אקדמית",
+	"engName": "Academic Preparatory Programs",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5902,
+	"lat": 32.7039,
+	"nodeType": "groupBuildings",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "groupCaravans500",
+	"buildingId": "",
+	"hebName": "מתחם הקראוונים",
+	"engName": "Trailers",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.591,
+	"lat": 32.7055,
+	"nodeType": "groupBuildings",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "groupDorms",
+	"buildingId": "",
+	"hebName": "מעונות",
+	"engName": "Dorms",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "",
+	"engFullName": "",
+	"lon": 35.5925,
+	"lat": 32.7044,
+	"nodeType": "groupBuildings",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "library",
+	"buildingId": "",
+	"hebName": "ספרייה",
+	"engName": "Library",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "הספרייה האקדמית ע\"ש משפחת יידל ורוברט סקלאר",
+	"engFullName": "Skar Family Library",
+	"lon": 35.5926,
+	"lat": 32.7056,
+	"nodeType": "building",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "research",
+	"buildingId": "",
+	"hebName": "מחקר",
+	"engName": "Research",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "צמח נסיונות",
+	"engFullName": "Zemach Agricultural Experiments",
+	"lon": 35.5908,
+	"lat": 32.7052,
+	"nodeType": "building",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  },
+  {
+	"id": "triguboff",
+	"buildingId": "",
+	"hebName": "טריגובוף",
+	"engName": "Triguboff",
+	"hebOnMapName": null,
+	"engOnMapName": null,
+	"hebFullName": "מרכז המדעים והטכנולוגיה ע\"ש הארי טריגובוף",
+	"engFullName": "Harry Triguboff Sciences Building",
+	"lon": 35.5918,
+	"lat": 32.7054,
+	"nodeType": "building",
+	"type": null,
+	"seats": null,
+	"engTags": [
+	  ""
+	],
+	"hebTags": [
+	  ""
+	]
+  }
 ]
