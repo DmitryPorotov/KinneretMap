@@ -4,7 +4,7 @@
         <button type="button" class="search-button buttons" ng-click="search()"></button>
         <input type="text" class="search-field" ng-model="searchField"/>
         <button type="button" class="buildings-button buttons" ng-click="showBuildingsCatalog()"></button>
-        <button type="button" class="staff-button buttons"></button>
+        <button type="button" class="staff-button buttons" ng-click="showStaffCatalog()"></button>
     </div>
 
     <div class="search-box" ng-show="isSearchShown">
@@ -21,20 +21,36 @@
             <span class="widget-title">{{langConst.buildings[langPrefix]}}</span><button class="close-button" type="button" ng-click="closeMenu()">&#x2715;</button>
         </div>
         <div class="buildings-catalog-container">
-            <km-catalog ng-show="isBuildingsCatalogShown"></km-catalog>
+            <div data-angular-treeview="true" data-tree-id="roomsTree" data-tree-model="buildingsObj" ></div>
         </div>
     </div>
 
     <div class="staff-catalog-box" ng-show="isStaffCatalogShown">
         <div class="arrow-up"></div>
+        <div class="widget-title-bar">
+            <span class="widget-title">{{langConst.staff[langPrefix]}}</span><button class="close-button" type="button" ng-click="closeMenu()">&#x2715;</button>
+        </div>
+        <div class="buildings-catalog-container">
+            <div data-angular-treeview="true" data-tree-id="staffTree" data-tree-model="staffObj" ></div>
+        </div>
     </div>
 
-    <div class="room-details" ng-show="isRoomDetailsShown">
-        <div ng-show="curRoom.nodeType == 'room' || curRoom.nodeType == 'noFloor'">
-            {{curRoom.id}} {{curRoom.type}} number of seats: {{curRoom.sits}} building: {{curRoom.building.hebName}}
-        </div>
-        <div ng-show="curRoom.nodeType == 'building'">
-            {{curRoom.id}} {{curRoom.type}} number of seats: {{curRoom.sits}} building: {{curRoom.building.hebName}}
+    <div class="details-pane" ng-show="isRoomDetailsShown">
+        <div class="details-wrapper">
+            <div ng-show="curRoom && curRoom.nodeType == 'room'">
+                {{curRoom.type ? langConst[curRoom.type][langPrefix] : ""}}
+                {{curRoom[langPrefix + "FullName"]}}
+                <div ng-show="curRoom.type == 'classroom' || curRoom.type == 'compRoom'">
+                    {{langConst.numOfSeats[langPrefix]}}: {{curRoom.seats ? curRoom.seats + "": langConst.noData[langPrefix]}}
+                </div>
+                <div>
+                    {{langConst.building[langPrefix]}}: {{curRoom.floor.building[langPrefix + "Name"]}}
+                </div>
+            </div>
+            <!--selection from the map-->
+            <div ng-show="curBuilding && curBuilding.nodeType == 'building'">
+                {{curBuilding[ langPrefix + "FullName"]}}
+            </div>
         </div>
     </div>
     <!--<div class="floor-plan-container">-->

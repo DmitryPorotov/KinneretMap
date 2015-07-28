@@ -151,7 +151,7 @@ body {
     /*padding: 5px 5px;*/
 }
 
-.search-box, .buildings-catalog-box, .staff-catalog-box, .room-details, .floor-plan {
+.search-box, .buildings-catalog-box, .staff-catalog-box, .details-pane, .floor-plan {
     width:100%;
     min-height:15px;
     margin-top:35px;
@@ -160,10 +160,13 @@ body {
     box-shadow:0 2px 6px rgba(0,0,0,0.3);
 }
 
-.room-details, .floor-plan {
+.details-pane, .floor-plan {
     margin-top:3px;
 }
 
+.details-wrapper{
+    padding:10px;
+}
 .arrow-up {
 	width: 0; 
 	height: 0; 

@@ -1,18 +1,20 @@
-﻿mapApp.controller("menuController", ["$scope", "dataService", "$rootScope", "$routeParams", "langConst",function ($scope, dataService, $rootScope, $routeParams, langConst) {
+﻿mapApp.controller("menuController", ["$scope", "$rootScope", "$routeParams", "langConst", "menuLogicService", "menuCache", function ($scope, $rootScope, $routeParams, langConst, menuLogicService, menuCache) {
     $scope.langPrefix = $routeParams.lang === "he" ? "heb" : "eng";
     $scope.langConst = langConst;
 
     $rootScope.isRTL = $routeParams.lang === "he";
-    $rootScope.buildings = null;
+    $rootScope.buildings = $rootScope.buildings || null;
 
     $scope.searchField = null;
     $scope.searchResults = [];
 
-    $scope.rooms = null;
-    $scope.roomsWithFloorPlans = null;
-    $scope.buildings = null;
-    $scope.floors = null;
-    $scope.cubicles = null;
+    $scope.buildings = menuCache.buildings || null;
+    $scope.floors = menuCache.floors || null;
+    $scope.rooms = menuCache.rooms || null;
+    $scope.cubicles = menuCache.cubicles || null;
+    $scope.buildingsObj = menuCache.buildingsObj || null;
+
+    $scope.staffObj = menuCache.staffObj || null;
 
     $scope.isSearchShown = false;
     $scope.isBuildingsCatalogShown = false;
@@ -34,44 +36,50 @@
         $scope.isPopupShown = false;
     });
 
-    dataService.getRooms().success(function (data) {
-        $scope.rooms = data;
-    });
+    if(!menuCache.isInit) {
+        menuLogicService.getBuildingsObject().then(function (data) {
+            $scope.buildingsObj = menuCache.buildingsObj = data;
+            var bd = menuLogicService.getBuildingsData();
+            $scope.floors = menuCache.floors = bd.floors;
+            $scope.rooms = menuCache.rooms = bd.rooms;
+            $scope.cubicles = menuCache.cubicles = bd.cubicles;
+            $rootScope.buildings = menuCache.buildings = $scope.buildings = bd.buildings;
+        }, function (error) {
+            //TODO handle error
+        });
 
-    dataService.getBuildings().success(function (data) {
-        $scope.buildings = data;
-    });
-
-    dataService.getFloors().success(function (data) {
-        $scope.floors = data;
-    });
-
-    dataService.getCubicles().success(function(data){
-       $scope.cubicles = data;
-    });
+        menuLogicService.getStaffObject().then(function (data) {
+            $scope.staffObj = menuCache.staffObj = data;
+        }, function (error) {
+            //TODO handle error
+        });
+        menuCache.isInit = true;
+    }
 
     $scope.closeMenu = function() {
-        $scope.isSearchShown = false;
-        $scope.isBuildingsCatalogShown = false;
-        $scope.isStaffCatalogShown = false;
-        $scope.isRoomDetailsShown = false;
-        $scope.isFloorPlanShown = false;
+        showPanes(false,false,false,false,false);
     };
 
     $scope.search = function () {
-        $scope.isBuildingsCatalogShown = false;
-        $scope.isStaffCatalogShown = false;
-        $scope.isRoomDetailsShown = false;
-        $scope.isFloorPlanShown = false;
-        $scope.isSearchShown = true;
+        showPanes(true);
         filterResults($scope.rooms);
     };
 
     $scope.showBuildingsCatalog = function () {
-        $scope.isBuildingsCatalogShown = true;
-        $scope.isStaffCatalogShown = false;
-        $scope.isSearchShown = false;
+        showPanes(false,true);
     };
+
+    $scope.showStaffCatalog = function(){
+        showPanes(false,false,true);
+    };
+
+    function showPanes(isSearchShown,isBuildingsCatalogShown,isStaffCatalogShown,isRoomDetailsShown,isFloorPlanShown){
+        $scope.isSearchShown = !!isSearchShown;
+        $scope.isBuildingsCatalogShown = !!isBuildingsCatalogShown;
+        $scope.isStaffCatalogShown = !!isStaffCatalogShown;
+        $scope.isRoomDetailsShown = !!isRoomDetailsShown;
+        $scope.isFloorPlanShown = !!isFloorPlanShown;
+    }
 
     function filterResults(rooms) {
         $scope.searchResults = [];
@@ -82,68 +90,8 @@
         }, $scope);
     }
 
-    $scope.$watch("rooms+buildings+floors+cubicles", function () {
-        if($scope.buildings && $scope.rooms && $scope.floors && $scope.cubicles)
-        {
-            $scope.rooms.forEach(function(r) { r.nodeType = "room"; });
-            $scope.floors.forEach(function(f) { f.nodeType = "floor"; f.imgSuffix = ""});
+    $scope.$watch("staffTree.currentNode", function (n, o) {
 
-            var rootTreeNodes = _.filter($scope.buildings,function(b){
-                return b.nodeType !== "noFloors" && b.nodeType !== "oneFloor";
-            });
-
-            rootTreeNodes.forEach(function(b){
-                switch (b.nodeType) {
-                    case "building":{
-                        b.children =_.filter($scope.floors,function(f) {
-                            return f.buildingId === b.id;
-                        });
-                        b.children.forEach(function(f){
-                            f.building = b; //link floors to buildings
-                            f.children = _.filter($scope.rooms,function(r){
-                                return r.buildingId === f.buildingId && r.floorNum === f.number;
-                            });
-                            f.children.forEach(function(r){ //link rooms to floors
-                                r.floor = f;
-                            });
-
-                            f.cubicles = _.filter($scope.cubicles,function(c){
-                                return c.floorNum === f.number && c.buildingId === f.buildingId;
-                            });
-                            f.cubicles.forEach(function(c){
-                                c.floor = r;
-                            });
-                        });
-                        b.children.sort(function(a,b){
-                            return a.number - b.number;
-                        });
-                        break;
-                    }
-                    case "groupOther":
-                    case "groupBuildings": {
-                        b.children = _.filter($scope.buildings, function(r) {
-                            return r.buildingId === b.id;
-                        });
-                        b.children.forEach(function (b2){
-                            b2.building = b;
-                            b2.floor = _.find($scope.floors,function(f){
-                                return f.buildingId === b2.id;
-                            });
-                            if(b2.floor) {
-                                b2.floor.building = b2;
-                                b2.floor.cubicles = _.filter($scope.cubicles, function (c) {
-                                   return c.floorNum === b2.floor.number && c.buildingId === b2.floor.buildingId;
-                                });
-                            }
-                        });
-                        break;
-                    }
-                }
-            });
-
-            $scope.buildingsData = rootTreeNodes;
-            $rootScope.buildings = $scope.buildings;
-        }
     });
 
     $scope.$watch("roomsTree.currentNode", function (n, o) {
@@ -152,11 +100,12 @@
             $scope.curRoom = curRoom;
             $scope.isRoomDetailsShown = isRoomDetailsShown;
             $scope.isFloorPlanShown = isFloorPlanShown;
+            $scope.curBuilding = null;
             $rootScope.locationSelectedFromMenu = locationSelectedFromMenu;
             if(curFloor){
                 curFloor.imgSuffix = $scope.isPopupShown ? 'big':'';
             }
-        }
+        };
         if (n) {
             switch ($scope.roomsTree.currentNode.nodeType) {
                 case  "building":
@@ -189,14 +138,11 @@
         }
     });
 
-
-
     $rootScope.$watch("locationSelectedFromMap",function(n) {
         if (n) {
-            $scope.curRoom = n;
-            $scope.isFloorPlanShown = false;
-            $scope.isRoomDetailsShown = true;
-            $scope.isBuildingsCatalogShown = true;
+            $scope.curBuilding = n;
+            $scope.curRoom = null;
+            showPanes(false,true,false,true)
         }
     })
 

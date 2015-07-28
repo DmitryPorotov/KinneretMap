@@ -16,7 +16,7 @@
                       ng-attr-style="font-size:{{r[langPrefix + 'FontSize'] || r['hebFontSize']}}px">
                     <tspan>{{t}}</tspan>
                 </text>
-                <title>{{r[langPrefix + "ToolTip"] || r["hebToolTip"]}}</title>
+                <title>{{r[langPrefix + "FullName"] || r["hebFullName"]}}</title>
             </g>
 
             <path ng-repeat="r in (fl.room ? fl.room.cubicles : [])" ng-attr-d="{{r.svgPath}}" ng-class="{selected:curRoom.id==r.id}" ng-click="selectRoom(r.id)" class="svg-room" />
