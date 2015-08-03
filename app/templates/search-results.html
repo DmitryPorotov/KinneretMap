@@ -1,0 +1,29 @@
+<div ng-show="searchResultsBuildings.length">
+    <div ng-repeat="b in searchResultsBuildings">
+        <div class="location-card-item" ng-click="selectBuildingFromSearch(b)">{{b[langPrefix + "Name"]}} {{b.building ? " - " + b.building[langPrefix + "Name"] : ""}}</div>
+    </div>
+</div>
+<div ng-show="searchResultsRooms.length">
+    <div ng-repeat="r in searchResultsRooms">
+        <div class="location-card-item" ng-click="selectRoomFromSearch(r)">{{r[langPrefix + "Name"]}} - {{r.floor.building[langPrefix + "Name"]}} - {{r.floor[langPrefix + "Name"]}}</div>
+    </div>
+</div>
+<div ng-show="searchResultsStaff.length">
+    <div ng-repeat="s in searchResultsStaff" class="staff-card-container">
+        <div class="staff-card-border">
+            <img ng-show="s.picture" ng-src="images/staff/{{s.picture}}" />
+            <div class="staff-card-item">{{langConst.name[langPrefix]}}: {{s[langPrefix + "Name"]}}</div>
+            <div class="staff-card-item">{{langConst.position[langPrefix]}}: {{s[langPrefix + "Position"]}}</div>
+            <div class="staff-card-item" ng-show="s.phones.length">{{langConst.phones[langPrefix]}}:
+                <span ng-repeat="phone in s.phones">{{phone}}</span>
+            </div>
+            <div class="staff-card-item" ng-show="s.fax">{{langConst.fax[langPrefix]}}: {{s.fax}}</div>
+            <div class="staff-card-item" ng-show="s.email">{{langConst.email[langPrefix]}}: {{s.email}}</div>
+            <div class="staff-card-item" ng-show="s.homepage">{{langConst.homepage[langPrefix]}}: {{s.homepage}}</div>
+            <div class="staff-card-item" ng-show="s.receptionHours">{{langConst.receptionHours[langPrefix]}}: {{s.receptionHours}}</div>
+            <div class="staff-card-item" ng-show="s.receptionPlace">
+                {{langConst.receptionPlace[langPrefix]}}: <span ng-click="goToRoom(s.receptionPlace)" class="goto-room">{{s.receptionPlace}}</span>
+            </div>
+        </div>
+    </div>
+</div>

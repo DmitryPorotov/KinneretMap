@@ -36,6 +36,7 @@ mapApp.directive("kmResizing",[function() {
                     }
 
                     e.css({"width": w + "px","height": h + "px"});
+                    img.css({"width": w + "px","height": h + "px"});
                 }
         }
     }

@@ -16,7 +16,7 @@ mapApp.service("menuLogicService", [ '$q', 'dataService', function ($q, dataServ
 
     function getBuildingsObject(){
         return $q(function(resolve, reject){
-            function handleAllBuildingsData(buildingsData){
+            function handleAllBuildingsData(){
                 if(buildingsData.rooms && buildingsData.floors && buildingsData.buildings && buildingsData.cubicles){
                     resolve(buildPlacesObject(buildingsData.buildings,buildingsData.rooms,buildingsData.floors,buildingsData.cubicles))
                 }
@@ -24,28 +24,24 @@ mapApp.service("menuLogicService", [ '$q', 'dataService', function ($q, dataServ
 
             dataService.getBuildings().then(function (data){
                 buildingsData.buildings = data.data;
-                return buildingsData;
             },function(e){
                 reject(e);
             }).then(handleAllBuildingsData);
 
             dataService.getRooms().then(function (data){
                 buildingsData.rooms = data.data;
-                return buildingsData;
             },function(e){
                 reject(e);
             }).then(handleAllBuildingsData);
 
             dataService.getFloors().then(function (data){
                 buildingsData.floors = data.data;
-                return buildingsData;
             },function(e){
                 reject(e);
             }).then(handleAllBuildingsData);
 
             dataService.getCubicles().then(function (data){
                 buildingsData.cubicles = data.data;
-                return buildingsData;
             },function(e){
                 reject(e);
             }).then(handleAllBuildingsData);
@@ -113,22 +109,20 @@ mapApp.service("menuLogicService", [ '$q', 'dataService', function ($q, dataServ
 
     function getStaffObject(){
         return $q(function(resolve, reject){
-            function handleAllStaffData(staffData){
+            function handleAllStaffData(){
                 if(staffData.staff && staffData.departments){
-                    resolve(buildStaffObject(staffData.staff,staffData.departments));
+                    resolve(buildStaffObject(staffData.staff, staffData.departments));
                 }
             }
 
             dataService.getStaff().then(function(data){
                 staffData.staff = data.data;
-                return staffData;
             },function(e){
                 reject(e);
             }).then(handleAllStaffData);
 
             dataService.getDepartments().then(function(data){
                 staffData.departments = data.data;
-                return staffData;
             },function(e){
                 reject(e);
             }).then(handleAllStaffData);
@@ -152,14 +146,45 @@ mapApp.service("menuLogicService", [ '$q', 'dataService', function ($q, dataServ
        return buildingsData;
     }
 
-    function getFloors(){
-        return buildingsData.floors;
+    function comparator_(i) {
+        return (
+            (i.engName && i.engName.indexOf(this.term) > -1) ||
+            (i.hebName && i.hebName.indexOf(this.term) > -1) ||
+            (i.hebOnMapName && i.hebOnMapName.indexOf(this.term) > -1) ||
+            (i.engOnMapName && i.engOnMapName.indexOf(this.term) > -1) ||
+            (i.hebFullName && i.hebFullName.indexOf(this.term) > -1) ||
+            (i.engFullName && i.engFullName.indexOf(this.term) > -1) ||
+            i.engTags.indexOf(this.term) > -1 ||
+            i.hebTags.indexOf(this.term) > -1
+        );
+    }
+
+    function findLocations(term) {
+        var resultsBuildings = _.filter(buildingsData.buildings, comparator_,{term:term});
+        var resultsRooms = _.filter(buildingsData.rooms, comparator_,{term:term});
+        return [resultsBuildings,resultsRooms];
+    }
+
+    function findPersons(term){
+        var results = _.filter(staffData.staff,function(i){
+            return (
+                (i.hebFirstName && i.hebFirstName == term) ||
+                (i.hebLastName && i.hebLastName == term) ||
+                (i.engFirstName && i.engFirstName == term) ||
+                (i.engLastName && i.engLastName == term) ||
+                (i.hebPosition && i.hebPosition.indexOf(term) > -1) ||
+                (i.engPosition && i.engPosition.indexOf(term) > -1)
+            );
+        })
+        return results;
     }
 
     return {
         getBuildingsObject:getBuildingsObject,
         getStaffObject:getStaffObject,
-        getBuildingsData:getBuildingsData
+        getBuildingsData:getBuildingsData,
+        findLocations:findLocations,
+        findPersons:findPersons
     };
 
 }]).service("menuCache",function(){return {isInit:false};});

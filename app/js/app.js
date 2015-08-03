@@ -2,7 +2,7 @@
     function ($routeProvider, $locationProvider) {
         $routeProvider
             .when("/:lang", {
-                controller: "menuController",
+                //controller: "menuController",
                 templateUrl: "templates/main.html",
                 access: "all"
             })
@@ -50,5 +50,41 @@
         "noData":{
             "eng":"no data",
             "heb":"אין מידע"
+        },
+        //"floor":{
+        //    eng:"floor",
+        //    heb:"קומה"
+        //}
+        "name":{
+            "eng":"Name",
+            "heb":"שם"
+        },
+        "position":{
+            "eng":"Position",
+            "heb":"תפקיד"
+        },
+        "phones": {
+            "eng":"Phones",
+            "heb":"טלפונים"
+        },
+        "fax":{
+            "eng":"Fax",
+            "heb":"פקס"
+        },
+        "email":{
+            "eng":"E-mail",
+            "heb":'דו"אל'
+        },
+        "receptionHours":{
+            "eng":"Reception hours",
+            "heb":"שעות קבלה"
+        },
+        "receptionPlace":{
+            "eng":"Room",
+            "heb":"חדר"
+        },
+        "homepage":{
+            "eng":"Home page",
+            "heb":"דף הבית"
         }
     });

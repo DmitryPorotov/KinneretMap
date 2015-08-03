@@ -1,4 +1,5 @@
 ﻿mapApp.controller("menuController", ["$scope", "$rootScope", "$routeParams", "langConst", "menuLogicService", "menuCache", function ($scope, $rootScope, $routeParams, langConst, menuLogicService, menuCache) {
+    console.log($scope.$id);
     $scope.langPrefix = $routeParams.lang === "he" ? "heb" : "eng";
     $scope.langConst = langConst;
 
@@ -6,7 +7,7 @@
     $rootScope.buildings = $rootScope.buildings || null;
 
     $scope.searchField = null;
-    $scope.searchResults = [];
+    $scope.searchResultsRooms = $scope.searchResultsBuildings = $scope.searchResultsStaff = [];
 
     $scope.buildings = menuCache.buildings || null;
     $scope.floors = menuCache.floors || null;
@@ -46,12 +47,14 @@
             $rootScope.buildings = menuCache.buildings = $scope.buildings = bd.buildings;
         }, function (error) {
             //TODO handle error
+            console.log(error);
         });
 
         menuLogicService.getStaffObject().then(function (data) {
             $scope.staffObj = menuCache.staffObj = data;
         }, function (error) {
             //TODO handle error
+            console.log(error);
         });
         menuCache.isInit = true;
     }
@@ -61,76 +64,78 @@
     };
 
     $scope.search = function () {
-        showPanes(true);
-        filterResults($scope.rooms);
+        if ($scope.searchField) {
+            showPanes(true);
+            filterResults($scope.searchField);
+        }
     };
 
+    $scope.handleSearchFieldKeyPress = function(e){
+        if(e.keyCode === 13 || e.charCode === 13){
+           $scope.search();
+        }
+    };
     $scope.showBuildingsCatalog = function () {
         showPanes(false,true);
     };
 
-    $scope.showStaffCatalog = function(){
-        showPanes(false,false,true);
+    function showPanes(isSearchShown,isBuildingsCatalogShown,isStaffCatalogShown,isRoomDetailsShown,isFloorPlanShown){
+       $scope.isSearchShown = !!isSearchShown;
+       $scope.isBuildingsCatalogShown = !!isBuildingsCatalogShown;
+       $scope.isStaffCatalogShown = !!isStaffCatalogShown;
+       $scope.isRoomDetailsShown = !!isRoomDetailsShown;
+       $scope.isFloorPlanShown = !!isFloorPlanShown;
+    }
+
+    function filterResults(term) {
+        var tmpRes = menuLogicService.findLocations(term);
+        $scope.searchResultsBuildings = tmpRes[0];
+        $scope.searchResultsRooms = tmpRes[1];
+        $scope.searchResultsStaff = menuLogicService.findPersons(term)
+    }
+
+    $scope.setLocationSelectedFromMenu = function(loc){
+        $rootScope.locationSelectedFromMenu = loc;
     };
 
-    function showPanes(isSearchShown,isBuildingsCatalogShown,isStaffCatalogShown,isRoomDetailsShown,isFloorPlanShown){
-        $scope.isSearchShown = !!isSearchShown;
-        $scope.isBuildingsCatalogShown = !!isBuildingsCatalogShown;
-        $scope.isStaffCatalogShown = !!isStaffCatalogShown;
-        $scope.isRoomDetailsShown = !!isRoomDetailsShown;
-        $scope.isFloorPlanShown = !!isFloorPlanShown;
-    }
-
-    function filterResults(rooms) {
-        $scope.searchResults = [];
-        $scope.rooms.forEach(function (v, i) {
-            if (v.id.toString().indexOf(this.searchField) > -1 ) {
-                this.searchResults.push(v);
-            }
-        }, $scope);
-    }
-
-    $scope.$watch("staffTree.currentNode", function (n, o) {
-
-    });
+    $scope.handleCurrentNodeChange = function (curFloor,curRoom,isRoomDetailsShown,isFloorPlanShown,locationSelectedFromMenu) {
+        $scope.curFloor = curFloor;
+        $scope.curRoom = curRoom;
+        $scope.isRoomDetailsShown = isRoomDetailsShown;
+        $scope.isFloorPlanShown = isFloorPlanShown;
+        $scope.curBuilding = null;
+        $rootScope.locationSelectedFromMenu = locationSelectedFromMenu;
+        if(curFloor){
+            curFloor.imgSuffix = $scope.isPopupShown ? 'big':'';
+        }
+    };
 
     $scope.$watch("roomsTree.currentNode", function (n, o) {
-        var handleCurrentNodeChange = function (curFloor,curRoom,isRoomDetailsShown,isFloorPlanShown,locationSelectedFromMenu) {
-            $scope.curFloor = curFloor;
-            $scope.curRoom = curRoom;
-            $scope.isRoomDetailsShown = isRoomDetailsShown;
-            $scope.isFloorPlanShown = isFloorPlanShown;
-            $scope.curBuilding = null;
-            $rootScope.locationSelectedFromMenu = locationSelectedFromMenu;
-            if(curFloor){
-                curFloor.imgSuffix = $scope.isPopupShown ? 'big':'';
-            }
-        };
         if (n) {
             switch ($scope.roomsTree.currentNode.nodeType) {
                 case  "building":
                 case  "groupBuildings":{
-                    handleCurrentNodeChange(null,null,false,false,n);
+                    $scope.handleCurrentNodeChange(null,null,false,false,n);
                     break;
                 }
                 case "groupOther":{
-                    handleCurrentNodeChange(null,null,false,false,null);
+                    $scope.handleCurrentNodeChange(null,null,false,false,null);
                     break;
                 }
                 case  "room":{
-                    handleCurrentNodeChange(n.floor,n,true,true,n.floor.building);
+                    $scope.handleCurrentNodeChange(n.floor,n,true,true,n.floor.building);
                     break;
                 }
                 case  "floor":{
-                    handleCurrentNodeChange(n,null,false,true,n.building);
+                    $scope.handleCurrentNodeChange(n,null,false,true,n.building);
                     break;
                 }
                 case "noFloors": {
-                    handleCurrentNodeChange(null,n,true,false,n);
+                    $scope.handleCurrentNodeChange(null,n,true,false,n);
                     break;
                 }
                 case  "oneFloor":{
-                    handleCurrentNodeChange(n.floor,null,false,true,n);
+                    $scope.handleCurrentNodeChange(n.floor,null,false,true,n);
                     break;
                 }
             }
@@ -142,7 +147,7 @@
         if (n) {
             $scope.curBuilding = n;
             $scope.curRoom = null;
-            showPanes(false,true,false,true)
+            showPanes(false,true,false,true);
         }
     })
 

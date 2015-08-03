@@ -1,10 +1,10 @@
 <!--<div id="map" class="map" ng-controller="mapController"></div>-->
-<div id="menu-bar">
+<div id="menu-bar" ng-controller="menuController">
     <div class="search-bar">
         <button type="button" class="search-button buttons" ng-click="search()"></button>
-        <input type="text" class="search-field" ng-model="searchField"/>
+        <input type="text" class="search-field" ng-model="searchField" ng-keypress="handleSearchFieldKeyPress($event)"/>
         <button type="button" class="buildings-button buttons" ng-click="showBuildingsCatalog()"></button>
-        <button type="button" class="staff-button buttons" ng-click="showStaffCatalog()"></button>
+        <!--<button type="button" class="staff-button buttons" ng-click="showStaffCatalog()"></button>-->
     </div>
 
     <div class="search-box" ng-show="isSearchShown">
@@ -12,7 +12,7 @@
         <div class="widget-title-bar">
             <span class="widget-title">{{langConst.searchResults[langPrefix]}}</span><button class="close-button" type="button" ng-click="closeMenu()">&#x2715;</button>
         </div>
-        <km-search search-results="searchResults" ng-show="isSearchShown"></km-search>
+        <km-search class="search-results-container" ng-show="isSearchShown"></km-search>
     </div>
 
     <div class="buildings-catalog-box" ng-show="isBuildingsCatalogShown">

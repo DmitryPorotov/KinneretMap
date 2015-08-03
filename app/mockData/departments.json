@@ -1,13 +1,13 @@
 [
   {
     "id": 1,
-    "hebName": "???? ???\"? ?????",
+    "hebName": "לשכת מנכ\"ל ונשיא",
     "engName": "President's and CEO office",
     "order": 1
   },
   {
     "id": 2,
-    "hebName": "?????",
+    "hebName": "כספים",
     "engName": "Finance",
     "order": 2
   }
