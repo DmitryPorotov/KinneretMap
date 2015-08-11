@@ -7,8 +7,8 @@
         getBuildings: getBuildings,
         getFloors: getFloors,
         getCubicles:getCubicles,
-        getDepartments:getDepartments,
-        getStaff:getStaff
+        getStaff:getStaff,
+        getLessons:getLessons
     };
 
     function getRooms() {
@@ -27,17 +27,17 @@
     }
 
     function getCubicles(){
+        return $http.get("http://localhost/api/cubicles.php",{cache: isCached});
         return $http.get("mockData/cubicles.json",{cache: isCached});
-    }
-
-    function getDepartments(){
-        return $http.get("http://localhost/api/departments.php",{cache: isCached});
-        return $http.get("mockData/departments.json",{cache: isCached});
     }
 
     function getStaff(){
         return $http.get("http://localhost/api/staff.php",{cache: isCached});
         return $http.get("mockData/staff.json",{cache: isCached});
+    }
+
+    function getLessons(date){
+        return $http.get("http://localhost/api/lessons.php?date=" + date,{cache: isCached})
     }
 
 }]);

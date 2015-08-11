@@ -12,7 +12,7 @@
     <div ng-repeat="s in searchResultsStaff" class="staff-card-container">
         <div class="staff-card-border">
             <img ng-show="s.picture" ng-src="images/staff/{{s.picture}}" />
-            <div class="staff-card-item">{{langConst.name[langPrefix]}}: {{s[langPrefix + "Name"]}}</div>
+            <div class="staff-card-item">{{langConst.name[langPrefix]}}: {{s[langPrefix + "Honorific"] + " " + s[langPrefix + "FirstName"] + " " + s[langPrefix + "LastName"]}}</div>
             <div class="staff-card-item">{{langConst.position[langPrefix]}}: {{s[langPrefix + "Position"]}}</div>
             <div class="staff-card-item" ng-show="s.phones.length">{{langConst.phones[langPrefix]}}:
                 <span ng-repeat="phone in s.phones">{{phone}}</span>
@@ -26,4 +26,7 @@
             </div>
         </div>
     </div>
+</div>
+<div class="no-results" ng-hide="searchResultsStaff.length + searchResultsBuildings.length + searchResultsRooms.length">
+    {{langConst.noSearchResults[langPrefix]}}
 </div>

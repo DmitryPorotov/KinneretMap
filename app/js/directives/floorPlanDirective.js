@@ -5,38 +5,37 @@ mapApp.directive("kmFloorPlans",["$rootScope", function($rootScope) {
     return {
         restrict:"E",
         templateUrl:"templates/floor-plans.html",
-        link: function ( scope, element, attrs ) {
-            scope.selectRoom = function(roomNum) {
-                scope.curRoom = _.find(scope.rooms, function (room) { return room.id == roomNum;});
-                scope.isRoomDetailsShown = true;
+        link: function ( $scope, element, attrs ) {
+            $scope.selectRoom = function(room) {
+                if($scope.isCubiclesShown) return;
+                $scope.curRoom = room;
+                $scope.curCubicle = null;
+                $scope.isRoomDetailsShown = true;
             };
-            scope.floorAdd = function(n){
-                var floor = _.find(scope.floors,function(f){
-                    return f.buildingId === scope.curFloor.buildingId && f.number == scope.curFloor.number + n;
+            $scope.isCubiclesShown = false;
+
+            $scope.floorAdd = function(n){
+                var floor = _.find($scope.curFloor.building.children,function(f){
+                    return f.buildingId === $scope.curFloor.buildingId && f.number == $scope.curFloor.number + n;
                 });
-                if(floor){
-                    scope.curFloor = floor;
-                    if(scope.isDocked){
-                        scope.curFloor.imgSuffix = "";
-                    }
-                    else{
-                        scope.curFloor.imgSuffix = "big";
-                    }
+                if(floor) {
+                    $scope.curFloor = floor;
+                    $scope.curRoom = null;
+                    $scope.curCubicle = null;
+                    $scope.isRoomDetailsShown = false;
                 }
             };
 
-            scope.isDocked = true;
-            scope.toggleDock = function () {
-                if (scope.isDocked) {
-                    $rootScope.$broadcast('showPopUp');
-                    scope.curFloor.imgSuffix = "big";
-                }
-                else {
-                    $rootScope.$broadcast('hidePopUp');
-                    scope.curFloor.imgSuffix = "";
-                }
-                scope.isDocked = !scope.isDocked;
-            }
+            $scope.toggleDock = function () {
+                $scope.isDocked = !$scope.isDocked;
+            };
+            $rootScope.$watch("isControlPressed",function(ctrlKey){
+                $scope.isCubiclesShown = ctrlKey;
+            });
+
+            $scope.selectCubicle = function(cub){
+                $scope.handleSelectionChange(null,$scope.curBuilding,$scope.curFloor,null,cub,$scope.isSearchShown,$scope.isBuildingsCatalogShown,true,true,$scope.isBuildingDetailsShown);
+            };
         }
     }
 }]);

@@ -3,17 +3,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="mapApp">
 <head>
     <title>Kinneret College Map</title>
-    <link href="css/map.css" rel="stylesheet" />
     <link href="css/ol.css" rel="stylesheet" />
+    <link href="css/map.css" rel="stylesheet" />
     <link href="css/angular.treeview.css" rel="stylesheet" />
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet" />-->
+    <link href="css/bootstap-custom.css" rel="stylesheet" />
 
     <script src="js/lib/underscore-min.js"></script>
     <!--angular.js lib-->
     <script src="js/lib/angular/angular.js"></script>
     <script src="js/lib/angular/angular-route.js"></script>
+    <script src="js/lib/angular/angular-animate.js"></script>
+    <!--<script src="js/lib/angular/i18n/angular-locale_he.js" id="localeScript"></script>-->
+    <script src="js/lib/tmhDynamicLocale.js"></script>
     <!--angular.js lib END-->
     <script src="js/app.js"></script>
     <script src="js/lib/angular.treeview.js"></script>
+    <script src="js/lib/ui-bootstrap-custom-tpls-0.13.3.js"></script>
     <script src="js/services/dataService.js"></script>
     <script src="js/services/menuLogicService.js"></script>
     <script src="js/controllers/menuController.js"></script>
@@ -21,6 +27,8 @@
     <script src="js/directives/searchDirective.js"></script>
     <script src="js/directives/floorPlanDirective.js"></script>
     <script src="js/directives/resizingDirective.js"></script>
+    <script src="js/directives/roomDetailsDirective.js"></script>
+    <script src="js/directives/linkDirective.js"></script>
     <script src="js/controllers/bodyController.js"></script>
 
 
@@ -29,14 +37,19 @@
     <script src="geoData/mehina.js"></script>
     <script src="js/lib/ol-debug.js"></script>
 </head>
-<body ng-controller="bodyController" class="{{isRTL ? 'rtl-body':'ltr-body'}}">
-<div style="position: fixed; top:0;left:50px;z-index: 500000">
-    <a href="#/en" ng-click="switchDir(false)">en</a>
-    <a href="#/he" ng-click="switchDir(true)">he</a>
+<body ng-controller="bodyController" class="{{isRTL ? 'rtl-body':'ltr-body'}}" ng-keydown="onKeyEvent($event)" ng-keyup="onKeyEvent($event)">
+<div class="flags-box-container">
+    <div class="flags-box">
+        <div class="flags-holder">
+            <img src="images/flag_of_israel-sm.png" ng-click="switchDir(true,'he')">
+        </div>
+        <div class="flags-holder">
+            <img src="images/union-jack-sm.png" ng-click="switchDir(false,'en')">
+        </div>
+    </div>
 </div>
 <div id="map" class="map" ng-controller="mapController" style="direction: ltr"></div>
 <div ng-view=""></div>
 
-<div class="floor-plan-popup"></div>
 </body>
 </html>

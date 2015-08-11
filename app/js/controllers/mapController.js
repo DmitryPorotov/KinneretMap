@@ -1,7 +1,7 @@
 /**
  * Created by dmitry on 02/06/15.
  */
-mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", function ($scope, $rootScope,$routeParams) {
+mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", function ($scope, $rootScope, $routeParams) {
     var map = null,
         textFunctions = {
             getText: function (feature, resolution) {
@@ -37,7 +37,7 @@ mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", funct
             },
             createTextStyle: function (feature, resolution) {
                 return new ol.style.Text({
-                    font: "bold 10px Verdana",
+                    font: "bold 10px Tahoma",
                     text: this.getText(feature, resolution),
                     fill: new ol.style.Fill({color: "black"}),
                     stroke: new ol.style.Stroke({color: "white", width: 3})
@@ -53,6 +53,12 @@ mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", funct
                 },this)
             }
         };
+
+    $rootScope.$watch("isRTL",function(){
+        if(map) {
+            textFunctions.updateFeatures(map.getView().getResolution());
+        }
+    });
 
     $rootScope.$watch("buildings",function(){
         if($rootScope.buildings){
@@ -99,6 +105,8 @@ mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", funct
     });
 
     var lastFeatureSelected = null;
+    var lastLayerSelected = null;
+
 
     var selectionStyle = new ol.style.Style({
         fill: new ol.style.Fill({
@@ -133,7 +141,11 @@ mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", funct
                 lastFeatureSelected.getStyle().pop();
             }
         }
+        if(lastLayerSelected !== layer){//building selecting does not unselect the previous building if those 2 building are on different layers. This is the fix
+            textFunctions.updateFeatures(map.getView().getResolution());
+        }
         lastFeatureSelected = feature;
+        lastLayerSelected = layer;
     }
 
 
@@ -216,13 +228,13 @@ mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", funct
 
                 return [new ol.style.Style(styles[feature.get("styleType")])];
             }
-        }
+        };
 
-        var vectorSourceMain = new ol.source.GeoJSON(buildings/*geoJsonData*/);
+        var vectorSourceMain = new ol.source.GeoJSON(buildings);
 
-        var vectorSourceMehina = new ol.source.GeoJSON(mehina/*geoJsonData*/);
+        var vectorSourceMehina = new ol.source.GeoJSON(mehina);
 
-        var vectorSourceDorms = new ol.source.GeoJSON(dorms/*geoJsonData*/);
+        var vectorSourceDorms = new ol.source.GeoJSON(dorms);
 
         var vectorLayerMain = new ol.layer.Vector({
             source: vectorSourceMain,

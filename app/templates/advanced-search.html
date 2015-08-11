@@ -1,0 +1,34 @@
+<div class="adv-search-container" ng-repeat="i in uselessArray">
+    <div class="date-picker-container well">
+        <datepicker max-mode="month" ng-model="dt" min-date="minDate" show-weeks="false"
+                    date-disabled="disabled(date, mode)" max-date="maxDate"></datepicker>
+    </div>
+    <div>
+    <div class="timepicker-container well">
+        <div class="timepicker-title">
+            {{langConst.from[langPrefix]}}
+        </div>
+        <div class="timepicker-ltr">
+            <timepicker ng-model="fromTime" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
+        </div>
+    </div>
+    <div class="timepicker-container well">
+        <div class="timepicker-title">
+            {{langConst.to[langPrefix]}}
+        </div>
+        <div class="timepicker-ltr">
+            <timepicker ng-model="toTime" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
+        </div>
+    </div>
+    </div>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-info checkable" ng-repeat="t in roomTypes" ng-class="{'active':selectedRoomTypes.indexOf(t)>-1}" ng-click="toggleRoomType(t)">
+            {{langConst[t][langPrefix]}}
+        </label>
+    </div>
+    <div class="adv-search-button-container">
+        <button class="btn btn-info adv-find-button" ng-click="searchForAvailableRooms(fromTime,toTime,dt,selectedRoomTypes)">
+            {{langConst.search[langPrefix]}}
+        </button>
+    </div>
+</div>

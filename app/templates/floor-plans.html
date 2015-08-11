@@ -1,14 +1,16 @@
 <div class="floor-plan-title-bar">
-    <button class="buttons plus-button" ng-click="floorAdd(1)"></button>
-    <button class="buttons minus-button" ng-click="floorAdd(-1)"></button>
+    <button class="buttons plus-button"  ng-class="{'disabled':!curFloor.building.children[curFloor.number + 1]}" ng-click="floorAdd(1)"></button>
+    <button class="buttons minus-button" ng-class="{'disabled':!curFloor.number}" ng-click="floorAdd(-1)"></button>
+    <!--<button class="buttons box-button" ng-click="toggleCubicles()" ng-show="curFloor && curFloor.cubicles && curFloor.cubicles.length" ng-class="{'button-pressed' : isCubiclesShown}"></button>-->
     <span class="floor-plan-title">{{curFloor[langPrefix + 'Name']}}</span>
     <button class="buttons toggle-dock-button" ng-class="{'docked':isDocked,'undocked':!isDocked}" ng-click="toggleDock()"></button>
 </div>
-<div style="padding: 20px 0;">
-    <div km-resizing="[[280,300],[480,460],[730,800]]" class="floor-plan-img-container" ng-repeat="fl in floors" ng-show="fl == curFloor" >
-        <img ng-src="images/{{(fl.building.nodeType == 'oneFloor' ? fl.building.id : fl.buildingId + fl.number) + fl.imgSuffix}}.jpg" class="floor-plan-img" />
+<div class="floor-plan-container" ng-class="{'cubicles-shown' : isCubiclesShown}">
+    <div km-resizing="[[280,300],[480,460],[730,800]]" class="floor-plan-img-container" ng-repeat="fl in [curFloor]" ng-show="fl == curFloor" >
+        <!--<img ng-src="images/{{(fl.building.nodeType == 'oneFloor' ? fl.building.id : fl.buildingId + fl.number) + fl.imgSuffix}}.jpg" class="floor-plan-img" />-->
+        <img ng-src="images/{{(fl.building.nodeType == 'oneFloor' ? fl.building.id : fl.buildingId + fl.number)}}big.jpg" class="floor-plan-img" />
         <svg ng-attr-view_box="{{fl.viewBox}}" class="floor-plan-svg" >
-            <g ng-repeat="r in fl.children" class="svg-room" ng-click="selectRoom(r.id)" ng-class="{selected:curRoom.id==r.id}">
+            <g ng-repeat="r in fl.children" class="svg-room" ng-click="selectRoom(r)" ng-class="{selected:curRoom.id==r.id}">
                 <path ng-attr-d="{{r.svgPath}}"/>
                 <text ng-repeat="t in (r[langPrefix + 'OnMapName'] || r['hebOnMapName']).split('(n)')"
                       ng-attr-x="{{r[langPrefix + 'LabelPosX'] || r['hebLabelPosX']}}"
@@ -19,7 +21,9 @@
                 <title>{{r[langPrefix + "FullName"] || r["hebFullName"]}}</title>
             </g>
 
-            <path ng-repeat="r in (fl.room ? fl.room.cubicles : [])" ng-attr-d="{{r.svgPath}}" ng-class="{selected:curRoom.id==r.id}" ng-click="selectRoom(r.id)" class="svg-room" />
+            <path ng-repeat="c in fl.cubicles" ng-attr-d="{{c.svgPath}}" class="svg-cubicle-path" ng-show="isCubiclesShown || c === curCubicle" ng-click="selectCubicle(c)" ng-class="{selected: c === curCubicle}">
+                <title>{{c.onMapNumber}}</title>
+            </path>
         </svg>
     </div>
 </div>

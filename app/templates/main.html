@@ -1,10 +1,21 @@
 <!--<div id="map" class="map" ng-controller="mapController"></div>-->
 <div id="menu-bar" ng-controller="menuController">
     <div class="search-bar">
-        <button type="button" class="search-button buttons" ng-click="search()"></button>
-        <input type="text" class="search-field" ng-model="searchField" ng-keypress="handleSearchFieldKeyPress($event)"/>
-        <button type="button" class="buildings-button buttons" ng-click="showBuildingsCatalog()"></button>
-        <!--<button type="button" class="staff-button buttons" ng-click="showStaffCatalog()"></button>-->
+        <div>
+            <button tabindex="3" type="button" class="search-button buttons" ng-click="search()"></button>
+            <button tabindex="-1" type="button" class="buttons adv-search-button" ng-click="showAdvSearch()"></button>
+        </div>
+        <input tabindex="2" type="text" class="search-field" ng-model="searchField" ng-keypress="handleSearchFieldKeyPress($event)"/>
+        <button tabindex="1" type="button" class="buildings-button buttons" ng-click="showBuildingsCatalog()"></button>
+    </div>
+
+    <div class="adv-search-box" ng-show="isAdvSearchShown">
+        <div class="arrow-up"></div>
+        <div class="widget-title-bar">
+            <span class="widget-title">Advanced search</span><button class="close-button" type="button" ng-click="closeMenu()">&#x2715;</button>
+        </div>
+        <km-adv-search></km-adv-search>
+
     </div>
 
     <div class="search-box" ng-show="isSearchShown">
@@ -25,37 +36,41 @@
         </div>
     </div>
 
-    <div class="staff-catalog-box" ng-show="isStaffCatalogShown">
-        <div class="arrow-up"></div>
+    <div class="building-details-pane" ng-show="isBuildingDetailsShown">
         <div class="widget-title-bar">
-            <span class="widget-title">{{langConst.staff[langPrefix]}}</span><button class="close-button" type="button" ng-click="closeMenu()">&#x2715;</button>
+            <!--<span class="widget-title">{{langConst.buildings[langPrefix]}}</span>-->
+            <button class="close-button" type="button" ng-click="closeMenu()">&#x2715;</button>
         </div>
-        <div class="buildings-catalog-container">
-            <div data-angular-treeview="true" data-tree-id="staffTree" data-tree-model="staffObj" ></div>
+        <div class="details-wrapper">
+            <div ng-hide="curBuilding.nodeType == 'noFloors'">
+                {{curBuilding[langPrefix + "FullName"] || curBuilding[langPrefix + "Name"]}}
+                <km-link location="curBuilding"></km-link>
+            </div>
+            <km-room-details ng-show="curBuilding.nodeType == 'noFloors'"></km-room-details>
         </div>
     </div>
 
-    <div class="details-pane" ng-show="isRoomDetailsShown">
+    <div class="floor-plan" ng-class="{'floor-plan-popup': !isDocked}" ng-show="isFloorPlanShown">
+        <km-floor-plans></km-floor-plans>
+    </div>
+
+    <div class="room-details-pane" ng-show="isRoomDetailsShown">
         <div class="details-wrapper">
-            <div ng-show="curRoom && curRoom.nodeType == 'room'">
-                {{curRoom.type ? langConst[curRoom.type][langPrefix] : ""}}
-                {{curRoom[langPrefix + "FullName"]}}
-                <div ng-show="curRoom.type == 'classroom' || curRoom.type == 'compRoom'">
-                    {{langConst.numOfSeats[langPrefix]}}: {{curRoom.seats ? curRoom.seats + "": langConst.noData[langPrefix]}}
-                </div>
-                <div>
-                    {{langConst.building[langPrefix]}}: {{curRoom.floor.building[langPrefix + "Name"]}}
-                </div>
-            </div>
-            <!--selection from the map-->
-            <div ng-show="curBuilding && curBuilding.nodeType == 'building'">
-                {{curBuilding[ langPrefix + "FullName"]}}
+            <km-room-details></km-room-details>
+            <!--<div ng-show="curRoom">-->
+                <!--{{curRoom.type ? langConst[curRoom.type][langPrefix] : ""}}-->
+                <!--{{curRoom[langPrefix + "FullName"] || curRoom.hebFullName || curRoom[langPrefix + "Name"] || curRoom.hebName }}-->
+                <!--<div ng-show="curRoom.type == 'classroom' || curRoom.type == 'compRoom'">-->
+                    <!--{{langConst.numOfSeats[langPrefix]}}: {{curRoom.seats ? curRoom.seats + "": langConst.noData[langPrefix]}}-->
+                <!--</div>-->
+                <!--<div ng-show="curRoom.nodeType == 'room'">-->
+                    <!--{{langConst.building[langPrefix]}}: {{curRoom.floor.building[langPrefix + "Name"]}}-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div ng-show="curCubicle">
+                {{curCubicle.parent[langPrefix + "Name"]}}-{{curCubicle.onMapNumber}}
             </div>
         </div>
     </div>
-    <!--<div class="floor-plan-container">-->
-    <div class="floor-plan" ng-class="{'floor-plan-popup': isPopupShown}" ng-show="isFloorPlanShown">
-        <km-floor-plans></km-floor-plans>
-    </div>
-    <!--</div>-->
 </div>

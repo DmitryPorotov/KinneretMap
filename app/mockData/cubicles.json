@@ -2,43 +2,122 @@
   {
     "id": 1,
     "buildingId": "caravan207",
-    "floorNum":0,
-    "svgPath":"M 4,62 53,45 76,111 28,128 Z"
+    "floorNum": 0,
+    "roomId": null,
+    "svgPath": "M 4,4 55,4 56,73 4,73 Z",
+    "onMapNumber": 1,
+    "numPosX": 17,
+    "numPosY": 52,
+    "numFontSize": 40
   },
   {
     "id": 2,
     "buildingId": "caravan207",
-    "floorNum":0,
-    "svgPath":"M 56,45 98,30 121,95 79,110 Z"
+    "floorNum": 0,
+    "roomId": null,
+    "svgPath": "M 106,4 181,4 181,45 106,45 Z",
+    "onMapNumber": 2,
+    "numPosX": 131,
+    "numPosY": 40,
+    "numFontSize": 40
   },
   {
     "id": 3,
     "buildingId": "caravan207",
-    "floorNum":0,
-    "svgPath": "M 101,29 114,68 185,43 171,5 Z"
+    "floorNum": 0,
+    "roomId": null,
+    "svgPath": "M 4,76 73,76 73,145 4,145 Z",
+    "onMapNumber": 3,
+    "numPosX": 26,
+    "numPosY": 127,
+    "numFontSize": 40
   },
   {
     "id": 4,
     "buildingId": "caravan207",
-    "floorNum":0,
-    "svgPath": "M 116,71 186,46 195,69 124,94 Z"
+    "floorNum": 0,
+    "roomId": null,
+    "svgPath": "M 76,76 105,76 105,47 181,48 181,145 76,145 Z",
+    "onMapNumber": 4,
+    "numPosX": 123,
+    "numPosY": 118,
+    "numFontSize": 40
   },
   {
     "id": 5,
-    "buildingId": "caravan207",
-    "floorNum":0,
-    "svgPath": "M 29,131 93,108 116,173 52,196 Z"
+    "buildingId": "achi",
+    "floorNum": 3,
+    "roomId": 836,
+    "svgPath": "M 17,2122 164,2123 164,2403 17,2404 Z",
+    "onMapNumber": 1,
+    "numPosX": null,
+    "numPosY": null,
+    "numFontSize": null
   },
   {
     "id": 6,
-    "buildingId": "caravan207",
-    "floorNum":0,
-    "svgPath": "M 97,107 195,73 218,137 120,172 Z"
+    "buildingId": "achi",
+    "floorNum": 3,
+    "roomId": 836,
+    "svgPath": "M 169,2201 300,2201 300,2402 168,2403 Z",
+    "onMapNumber": 2,
+    "numPosX": null,
+    "numPosY": null,
+    "numFontSize": null
   },
   {
     "id": 7,
-    "buildingId": "caravan207",
-    "floorNum":0,
-    "svgPath": ""
+    "buildingId": "achi",
+    "floorNum": 3,
+    "roomId": 836,
+    "svgPath": "M 305,2201 437,2200 439,2404 305,2403 Z",
+    "onMapNumber": 3,
+    "numPosX": null,
+    "numPosY": null,
+    "numFontSize": null
+  },
+  {
+    "id": 8,
+    "buildingId": "achi",
+    "floorNum": 3,
+    "roomId": 836,
+    "svgPath": "M 598,2199 731,2201 731,2405 598,2403 Z",
+    "onMapNumber": 4,
+    "numPosX": null,
+    "numPosY": null,
+    "numFontSize": null
+  },
+  {
+    "id": 9,
+    "buildingId": "achi",
+    "floorNum": 3,
+    "roomId": 836,
+    "svgPath": "M 744,2201 877,2200 877,2403 745,2405 Z",
+    "onMapNumber": 5,
+    "numPosX": null,
+    "numPosY": null,
+    "numFontSize": null
+  },
+  {
+    "id": 10,
+    "buildingId": "achi",
+    "floorNum": 3,
+    "roomId": 836,
+    "svgPath": "M 745,2019 877,2019 877,2120 744,2120 Z",
+    "onMapNumber": 6,
+    "numPosX": null,
+    "numPosY": null,
+    "numFontSize": null
+  },
+  {
+    "id": 11,
+    "buildingId": "achi",
+    "floorNum": 3,
+    "roomId": 836,
+    "svgPath": "M 881,2020 1165,2019 1165,2403 881,2403 Z",
+    "onMapNumber": 7,
+    "numPosX": null,
+    "numPosY": null,
+    "numFontSize": null
   }
 ]

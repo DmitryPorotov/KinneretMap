@@ -1,0 +1,11 @@
+<div>
+    {{curRoom.type ? langConst[curRoom.type][langPrefix] : ""}}
+    {{curRoom[langPrefix + "FullName"] || curRoom.hebFullName || curRoom[langPrefix + "Name"] || curRoom.hebName }}
+    <km-link location="curRoom"></km-link>
+    <div ng-show="curRoom.type == 'classroom' || curRoom.type == 'compRoom'">
+        {{langConst.numOfSeats[langPrefix]}}: {{curRoom.seats ? curRoom.seats + "": langConst.noData[langPrefix]}}
+    </div>
+    <div ng-show="curRoom.nodeType == 'room'">
+        {{langConst.building[langPrefix]}}: {{curRoom.floor.building[langPrefix + "Name"]}}
+    </div>
+</div>

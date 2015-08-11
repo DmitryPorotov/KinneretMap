@@ -45,11 +45,10 @@
 				var template =
 					'<ul>' +
 						'<li data-ng-repeat="node in ' + treeModel + '">' +
-							'<i class="collapsed ico-plus" data-ng-show="node.' + nodeChildren + '.length && !node.expanded" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
-							'<i class="expanded ico-minus" data-ng-show="node.' + nodeChildren + '.length && node.expanded" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
-							'<i class="normal" data-ng-hide="node.' + nodeChildren + '.length"></i> ' +
+							'<i data-ng-class="{\'ico-plus\':(node.' + nodeChildren + '.length && !node.expanded),\'ico-minus\':(node.' + nodeChildren + '.length && node.expanded), normal: !node.' + nodeChildren + '}" '+
+							'data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
 							'<span data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)">{{node["' + scope.langPrefix + 'Name"]}}</span>' +
-							'<div data-ng-hide="!node.expanded" data-tree-id="' + treeId + '" data-tree-model="node.' + nodeChildren + '" data-node-id=' + nodeId + ' data-node-label="' + scope.langPrefix + 'Name" data-node-children=' + nodeChildren + '></div>' +
+							'<div data-ng-hide="!node.expanded" data-tree-id="' + treeId + '" data-tree-model="node.expChildren" data-node-id=' + nodeId + ' data-node-label="' + scope.langPrefix + 'Name" data-node-children=' + nodeChildren + '></div>' +
 						'</li>' +
 					'</ul>';
 
@@ -68,6 +67,12 @@
 
 							//Collapse or Expand
 							selectedNode.expanded = !selectedNode.expanded;
+							if(selectedNode.expanded){
+								selectedNode.expChildren = selectedNode[nodeChildren];
+							}
+							else{
+								selectedNode.expChildren = null;
+							}
 						};
 
 						//if node label clicks,

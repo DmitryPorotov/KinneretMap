@@ -1,50 +1,43 @@
-﻿mapApp.controller("menuController", ["$scope", "$rootScope", "$routeParams", "langConst", "menuLogicService", "menuCache", function ($scope, $rootScope, $routeParams, langConst, menuLogicService, menuCache) {
-    console.log($scope.$id);
+﻿mapApp.controller("menuController", ["$scope","$rootScope","$routeParams","langConst","menuLogicService","menuCache","tmhDynamicLocale",
+                            function ($scope, $rootScope, $routeParams, langConst, menuLogicService, menuCache, tmhDynamicLocale) {
+    console.log("menuController " + $scope.$id);
     $scope.langPrefix = $routeParams.lang === "he" ? "heb" : "eng";
     $scope.langConst = langConst;
 
     $rootScope.isRTL = $routeParams.lang === "he";
     $rootScope.buildings = $rootScope.buildings || null;
+    $rootScope.locationSelectedFromMap = null;
 
     $scope.searchField = null;
     $scope.searchResultsRooms = $scope.searchResultsBuildings = $scope.searchResultsStaff = [];
 
-    $scope.buildings = menuCache.buildings || null;
-    $scope.floors = menuCache.floors || null;
-    $scope.rooms = menuCache.rooms || null;
-    $scope.cubicles = menuCache.cubicles || null;
     $scope.buildingsObj = menuCache.buildingsObj || null;
 
     $scope.staffObj = menuCache.staffObj || null;
 
     $scope.isSearchShown = false;
     $scope.isBuildingsCatalogShown = false;
-    $scope.isStaffCatalogShown = false;
     $scope.isRoomDetailsShown = false;
+    $scope.isBuildingDetailsShown = false;
     $scope.isFloorPlanShown = false;
+    $scope.isAdvSearchShown = false;
 
-    $scope.curRoom = null;
-    $scope.curFloor = null;
+    $scope.isDocked = true;
+
     $scope.curBuilding = null;
-
-    $scope.isPopupShown = false;
-
-    $rootScope.$on('showPopUp',function(){
-        $scope.isPopupShown = true;
-    });
-
-    $rootScope.$on('hidePopUp',function(){
-        $scope.isPopupShown = false;
-    });
+    $scope.curFloor = null;
+    $scope.curRoom = null;
+    $scope.curCubicle = null;
 
     if(!menuCache.isInit) {
         menuLogicService.getBuildingsObject().then(function (data) {
             $scope.buildingsObj = menuCache.buildingsObj = data;
             var bd = menuLogicService.getBuildingsData();
-            $scope.floors = menuCache.floors = bd.floors;
-            $scope.rooms = menuCache.rooms = bd.rooms;
-            $scope.cubicles = menuCache.cubicles = bd.cubicles;
-            $rootScope.buildings = menuCache.buildings = $scope.buildings = bd.buildings;
+            $rootScope.buildings = bd.buildings;
+            if($routeParams.sTerm && $routeParams.sType){
+                handleUrlParams($routeParams.sType,$routeParams.sTerm);
+            }
+            menuCache.isInit = true;
         }, function (error) {
             //TODO handle error
             console.log(error);
@@ -56,11 +49,15 @@
             //TODO handle error
             console.log(error);
         });
-        menuCache.isInit = true;
     }
 
+    $scope.showAdvSearch = function(){
+        showPanes(false,false,false,false,false,true);
+        $scope.uselessArray = [1];
+    };
+
     $scope.closeMenu = function() {
-        showPanes(false,false,false,false,false);
+        showPanes();
     };
 
     $scope.search = function () {
@@ -71,7 +68,7 @@
     };
 
     $scope.handleSearchFieldKeyPress = function(e){
-        if(e.keyCode === 13 || e.charCode === 13){
+        if(e.keyCode === 13 || e.key === "Enter"){
            $scope.search();
         }
     };
@@ -79,35 +76,28 @@
         showPanes(false,true);
     };
 
-    function showPanes(isSearchShown,isBuildingsCatalogShown,isStaffCatalogShown,isRoomDetailsShown,isFloorPlanShown){
-       $scope.isSearchShown = !!isSearchShown;
-       $scope.isBuildingsCatalogShown = !!isBuildingsCatalogShown;
-       $scope.isStaffCatalogShown = !!isStaffCatalogShown;
-       $scope.isRoomDetailsShown = !!isRoomDetailsShown;
-       $scope.isFloorPlanShown = !!isFloorPlanShown;
+    function showPanes(isSearchShown,isBuildingsCatalogShown,isRoomDetailsShown,isFloorPlanShown,isBuildingDetailsShown,isAdvSearchShown){
+        $scope.isSearchShown = !!isSearchShown;
+        $scope.isBuildingsCatalogShown = !!isBuildingsCatalogShown;
+        $scope.isRoomDetailsShown = !!isRoomDetailsShown;
+        $scope.isFloorPlanShown = !!isFloorPlanShown;
+        $scope.isBuildingDetailsShown = !!isBuildingDetailsShown;
+        $scope.isAdvSearchShown = !!isAdvSearchShown;
     }
 
     function filterResults(term) {
-        var tmpRes = menuLogicService.findLocations(term);
-        $scope.searchResultsBuildings = tmpRes[0];
-        $scope.searchResultsRooms = tmpRes[1];
-        $scope.searchResultsStaff = menuLogicService.findPersons(term)
+        $scope.searchResultsBuildings = menuLogicService.findBuildings(term);
+        $scope.searchResultsRooms = menuLogicService.findRooms(term);
+        $scope.searchResultsStaff = menuLogicService.findPersons(term);
     }
 
-    $scope.setLocationSelectedFromMenu = function(loc){
-        $rootScope.locationSelectedFromMenu = loc;
-    };
-
-    $scope.handleCurrentNodeChange = function (curFloor,curRoom,isRoomDetailsShown,isFloorPlanShown,locationSelectedFromMenu) {
+    $scope.handleSelectionChange = function(locationSelectedFromMenu, curBuilding, curFloor, curRoom, curCubicle,isSearchShown,isBuildingsCatalogShown,isRoomDetailsShown,isFloorPlanShown,isBuildingDetailsShown){
+        $rootScope.locationSelectedFromMenu = locationSelectedFromMenu;
+        $scope.curBuilding = curBuilding;
         $scope.curFloor = curFloor;
         $scope.curRoom = curRoom;
-        $scope.isRoomDetailsShown = isRoomDetailsShown;
-        $scope.isFloorPlanShown = isFloorPlanShown;
-        $scope.curBuilding = null;
-        $rootScope.locationSelectedFromMenu = locationSelectedFromMenu;
-        if(curFloor){
-            curFloor.imgSuffix = $scope.isPopupShown ? 'big':'';
-        }
+        $scope.curCubicle = curCubicle;
+        showPanes(isSearchShown,isBuildingsCatalogShown,isRoomDetailsShown,isFloorPlanShown,isBuildingDetailsShown);
     };
 
     $scope.$watch("roomsTree.currentNode", function (n, o) {
@@ -115,27 +105,27 @@
             switch ($scope.roomsTree.currentNode.nodeType) {
                 case  "building":
                 case  "groupBuildings":{
-                    $scope.handleCurrentNodeChange(null,null,false,false,n);
+                    $scope.handleSelectionChange(n,null,null,null,null,false,true);
                     break;
                 }
                 case "groupOther":{
-                    $scope.handleCurrentNodeChange(null,null,false,false,null);
+                    $scope.handleSelectionChange(null,null,null,null,null,false,true);
                     break;
                 }
                 case  "room":{
-                    $scope.handleCurrentNodeChange(n.floor,n,true,true,n.floor.building);
+                    $scope.handleSelectionChange(n.floor.building,null, n.floor,n,null,false,true,true,true);
                     break;
                 }
                 case  "floor":{
-                    $scope.handleCurrentNodeChange(n,null,false,true,n.building);
+                    $scope.handleSelectionChange(n.building,null,n,null,null,false,true,false,true);
                     break;
                 }
                 case "noFloors": {
-                    $scope.handleCurrentNodeChange(null,n,true,false,n);
+                    $scope.handleSelectionChange(n,null,null,n,null,false,true,true);
                     break;
                 }
                 case  "oneFloor":{
-                    $scope.handleCurrentNodeChange(n.floor,null,false,true,n);
+                    $scope.handleSelectionChange(n,null,n,null,null,false,true,false,true);
                     break;
                 }
             }
@@ -145,10 +135,44 @@
 
     $rootScope.$watch("locationSelectedFromMap",function(n) {
         if (n) {
-            $scope.curBuilding = n;
-            $scope.curRoom = null;
-            showPanes(false,true,false,true);
+            var floor = n.floor || _.find(n.children,function(f){ return !f.number;}) || null;
+            var room = n.nodeType === 'noFloors' ? n : null;
+            $scope.handleSelectionChange(null,n,floor,room,null,false,false,false,floor,true);
         }
-    })
+    });
 
+    function handleUrlParams(sType, sTerm){
+        switch (sType){
+            case "location":{
+                var result = menuLogicService.findLocation(sTerm);
+                if(result.cubicle){
+                    if(result.room){
+                        $scope.handleSelectionChange(result.room.floor.building,result.room.floor.building,result.room.floor,null,result.cubicle,false,false,true,true,true);
+                    }
+                    else if(result.building) {
+                        $scope.handleSelectionChange(result.building,result.building,result.building.floor,null,result.cubicle,false,false,true,true,true);
+                    }
+                }
+                else if(result.room){
+                    $scope.handleSelectionChange(result.room.floor.building,result.room.floor.building, result.room.floor,result.room,null,false,false,true,true,true);
+                }
+                else if(result.building) {
+                    var room = result.building.nodeType === 'noFloors' ? result.building : null;
+                    $scope.handleSelectionChange(result.building,result.building,null,room,null,false,false,false,false,true);
+                }
+                else {
+                    $scope.searchResultsBuildings = result.buildings;
+                    $scope.searchResultsRooms = result.rooms;
+                    showPanes(true);
+                }
+                break;
+            }
+        }
+    }
+
+    if(menuCache.isInit && $routeParams.sTerm && $routeParams.sType){
+        handleUrlParams($routeParams.sType,$routeParams.sTerm);
+    }
+
+                                tmhDynamicLocale.set($routeParams.lang);
 }]);

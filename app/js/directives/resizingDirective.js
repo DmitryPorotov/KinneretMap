@@ -14,9 +14,13 @@ mapApp.directive("kmResizing",[function() {
 
             });
 
+            scope.$watch("isDocked",function (){
+                scope.resizeTo(element,img,img[0].naturalWidth,img[0].naturalHeight);
+            });
+
             scope.resizeTo = scope.resizeTo || function(e,img,w,h) {
                     var sizeNum = 0;
-                    if (img[0].src.indexOf("big") > -1){
+                    if (!scope.isDocked /*img[0].src.indexOf("big") > -1*/){
                         sizeNum = 1;
                         if(window.innerHeight > 800 && window.innerWidth > 1200){
                             sizeNum = 2;
@@ -30,7 +34,7 @@ mapApp.directive("kmResizing",[function() {
                         w *= ratio;
                     }
                     if(h > mW){
-                        var ratio = mW / h;
+                        ratio = mW / h;
                         h *= ratio;
                         w *= ratio;
                     }

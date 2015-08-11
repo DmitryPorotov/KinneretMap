@@ -12,7 +12,9 @@ mapApp.service("menuLogicService", [ '$q', 'dataService', function ($q, dataServ
         staffData = {
             departments: null,
             staff: null
-        };
+        },
+        possiblyAvailableRooms = null,
+        possiblyAvailableBuildings = null;
 
     function getBuildingsObject(){
         return $q(function(resolve, reject){
@@ -75,7 +77,8 @@ mapApp.service("menuLogicService", [ '$q', 'dataService', function ($q, dataServ
                             return c.floorNum === f.number && c.buildingId === f.buildingId;
                         });
                         f.cubicles.forEach(function(c){
-                            c.floor = r;
+                            c.floor = f;
+                            c.parent = c.room = _.find(f.children,function(r){return r.id === c.roomId;})
                         });
                     });
                     b.children.sort(function(a,b){
@@ -98,6 +101,9 @@ mapApp.service("menuLogicService", [ '$q', 'dataService', function ($q, dataServ
                             b2.floor.cubicles = _.filter(cubicles, function (c) {
                                 return c.floorNum === b2.floor.number && c.buildingId === b2.floor.buildingId;
                             });
+                            b2.floor.cubicles.forEach(function(c){
+                                c.parent = c.floor = b2.floor;
+                            });
                         }
                     });
                     break;
@@ -108,45 +114,23 @@ mapApp.service("menuLogicService", [ '$q', 'dataService', function ($q, dataServ
     }
 
     function getStaffObject(){
+        //TODO rewrite to use another action
         return $q(function(resolve, reject){
-            function handleAllStaffData(){
-                if(staffData.staff && staffData.departments){
-                    resolve(buildStaffObject(staffData.staff, staffData.departments));
-                }
-            }
-
             dataService.getStaff().then(function(data){
                 staffData.staff = data.data;
+                resolve(data.data);
             },function(e){
                 reject(e);
-            }).then(handleAllStaffData);
-
-            dataService.getDepartments().then(function(data){
-                staffData.departments = data.data;
-            },function(e){
-                reject(e);
-            }).then(handleAllStaffData);
-        });
-    }
-
-    function buildStaffObject(staff, departments){
-        departments.forEach(function(dep){
-            staff.forEach(function(s){
-                s.hebName = s.hebHonorific + " " + s.hebFirstName + " " + s.hebLastName;
-                s.engName = s.engHonorific + " " + s.engFirstName + " " + s.engLastName;
             });
-            dep.children = _.filter(staff,function(s){
-                return s.department_id === dep.id;
-            });
+
         });
-        return departments.sort(function(a,b){return (a.order - b.order);})
     }
 
     function getBuildingsData(){
        return buildingsData;
     }
 
-    function comparator_(i) {
+    function comparatorLoose_(i) {
         return (
             (i.engName && i.engName.indexOf(this.term) > -1) ||
             (i.hebName && i.hebName.indexOf(this.term) > -1) ||
@@ -159,14 +143,20 @@ mapApp.service("menuLogicService", [ '$q', 'dataService', function ($q, dataServ
         );
     }
 
-    function findLocations(term) {
-        var resultsBuildings = _.filter(buildingsData.buildings, comparator_,{term:term});
-        var resultsRooms = _.filter(buildingsData.rooms, comparator_,{term:term});
-        return [resultsBuildings,resultsRooms];
+    function comparatorStrict_(i){
+        return i.hebName === this.term || i.engName === this.term;
+    }
+
+    function findBuildings(term,isStrict) {
+        return _.filter(buildingsData.buildings, (isStrict ? comparatorStrict_ : comparatorLoose_),{term:term});
+    }
+
+    function findRooms(term,isStrict){
+        return _.filter(buildingsData.rooms,(isStrict ? comparatorStrict_ : comparatorLoose_),{term:term});
     }
 
     function findPersons(term){
-        var results = _.filter(staffData.staff,function(i){
+        return _.filter(staffData.staff,function(i){
             return (
                 (i.hebFirstName && i.hebFirstName == term) ||
                 (i.hebLastName && i.hebLastName == term) ||
@@ -175,16 +165,81 @@ mapApp.service("menuLogicService", [ '$q', 'dataService', function ($q, dataServ
                 (i.hebPosition && i.hebPosition.indexOf(term) > -1) ||
                 (i.engPosition && i.engPosition.indexOf(term) > -1)
             );
+        });
+    }
+
+    function findLocation(term) {
+        var arr = term.split("-");
+        var rooms = findRooms(arr[0], true);
+        var buildings = findBuildings(arr[0], true);
+        if (rooms.length + buildings.length === 1) {
+            var room = rooms[0];
+            var building = buildings[0];
+            if (room && arr.length > 1) {
+                var cubicle = _.find(buildingsData.cubicles, function (c) {
+                    return c.onMapNumber == arr[1] && c.roomId == room.id;
+                });
+            }
+            if (building && building.nodeType === 'oneFloor' && arr.length > 1) {
+                cubicle = _.find(buildingsData.cubicles, function (c) {
+                    return c.onMapNumber == arr[1] && c.buildingId == building.id;
+                });
+            }
+        }
+        return {buildings: buildings, rooms: rooms, room:room, building:building, cubicle: cubicle}
+    }
+
+    function filterRoomsByAvailability(startTime, endTime, date, types){
+        if(!possiblyAvailableRooms){
+            possiblyAvailableRooms = _.filter(buildingsData.rooms, function(i){
+                return i.externalId;
+            });
+        }
+        if(!possiblyAvailableBuildings){
+            possiblyAvailableBuildings = _.filter(buildingsData.buildings, function(i){
+                return i.externalId;
+            });
+        }
+        var availableRooms = _.filter(possiblyAvailableRooms, function(i){
+            return types.indexOf(i.type) > -1;
+        });
+        var availableBuildings = _.filter(possiblyAvailableBuildings, function(i){
+            return types.indexOf(i.type) > -1;
+        });
+        function comparator_(i){
+            var roomsLessons = _.filter(this.data, function(j){
+                return j.roomId == i.externalId;
+            });
+            var numOfIntersections = 0;
+            roomsLessons.forEach(function(l){
+                if(doSegmentsIntersect(startTime,endTime,new Date (l.startTime),new Date(l.endTime))) numOfIntersections ++;
+            });
+            return !numOfIntersections;
+        }
+        return $q(function(resolve, reject){
+            dataService.getLessons(date).then(function(d){
+                 availableRooms = _.filter(availableRooms,comparator_,{data: d.data});
+                availableBuildings = _.filter(availableBuildings,comparator_,{data: d.data})
+                resolve({rooms:availableRooms,buildings:availableBuildings});
+            },function(e){
+                reject(e);
+            })
         })
-        return results;
+    }
+
+    function doSegmentsIntersect(x1,x2,y1,y2){
+        return x2 >= y1 && y2 >= x1;
     }
 
     return {
         getBuildingsObject:getBuildingsObject,
         getStaffObject:getStaffObject,
         getBuildingsData:getBuildingsData,
-        findLocations:findLocations,
-        findPersons:findPersons
+        findRooms:findRooms,
+        findBuildings:findBuildings,
+        findLocation:findLocation,
+        findPersons:findPersons,
+        filterRoomsByAvailability:filterRoomsByAvailability
     };
 
 }]).service("menuCache",function(){return {isInit:false};});

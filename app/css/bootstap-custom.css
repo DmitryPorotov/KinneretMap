@@ -1,0 +1,214 @@
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 4px 10px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    user-select: none;
+}
+.btn.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+}
+.btn-sm, .btn-group-sm>.btn {
+    padding: 2px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+.btn-info {
+    color: #fff;
+    background-color: rgb(219,145,242);
+    border-color: rgb(169,95,202);
+}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+    color: #333;
+    background-color: #ebebeb;
+    border-color: #adadad;
+}
+.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
+    color: #fff;
+    background-color: rgb(199,125,222);
+    border-color: rgb(129,55,162);
+}
+.btn-default.disabled, .btn-default[disabled], fieldset[disabled] .btn-default, .btn-default.disabled:hover, .btn-default[disabled]:hover, fieldset[disabled] .btn-default:hover, .btn-default.disabled:focus, .btn-default[disabled]:focus, fieldset[disabled] .btn-default:focus, .btn-default.disabled:active, .btn-default[disabled]:active, fieldset[disabled] .btn-default:active, .btn-default.disabled.active, .btn-default[disabled].active, fieldset[disabled] .btn-default.active {
+    background-color: #fff;
+    border-color: #ccc;
+}
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: .65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.form-control {
+    display: block;
+    /*width: 100%;*/
+    /*height: 34px;*/
+    padding: 4px 4px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.text-center {
+    text-align: center;
+}
+small, .small {
+    font-size: 70%;
+}
+.text-info {
+    color: #31708f;
+}
+@font-face {
+    font-family: 'IcoMoon';
+    src: url('../fonts/icomoon-custom.ttf?-qzdfrf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'IcoMoon';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    font-size: 120%;
+}
+.glyphicon-chevron-right:before {
+    content: "\f054";
+}
+.rtl-body .glyphicon-chevron-right:before {
+    content: "\f053";
+}
+.glyphicon-chevron-left:before {
+    content: "\f053";
+}
+.rtl-body .glyphicon-chevron-left:before {
+    content: "\f054";
+}
+.glyphicon-chevron-up:before{
+    content: "\f077";
+}
+.glyphicon-chevron-down:before {
+    content: "\f078";
+}
+.btn-link {
+    color: #428bca;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: 0;
+}
+h6, .h6 {
+    font-size: 12px;
+}
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+    border-radius: 0;
+}
+.btn-group .btn+.btn, .btn-group .btn+.btn-group, .btn-group .btn-group+.btn, .btn-group .btn-group+.btn-group {
+    margin-left: -1px;
+}
+.btn-group>.btn, .btn-group-vertical>.btn {
+    position: relative;
+    float: left;
+}
+
+.well {
+    min-height: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05)
+}
+
+/** advance search */
+.timepicker-ltr{
+    direction: ltr !important;
+    display: inline-block;
+}
+.date-picker-container {
+    height: 185px;
+    width: 252px;
+    margin: 0 auto 10px auto;
+}
+.date-picker-container>div>table{
+    margin: 0 auto;
+}
+.adv-search-container{
+    padding: 10px;
+}
+.timepicker-container{
+    float: right;
+    padding: 4px;
+    margin-bottom: 10px;
+}
+.timepicker-container:first-child{
+    margin-left: 7px;
+}
+.ltr-body .timepicker-container:first-child{
+    margin-right: 7px;
+    margin-left: 0;
+}
+.ltr-body .timepicker-container{
+    float: left;
+}
+.timepicker-title {
+    text-align: center;
+}
+.adv-search-button-container{
+    padding: 10px 0;
+    text-align: left;
+}
+.ltr-body .adv-search-button-container{
+    text-align: right;
+}
+.adv-find-button:after{
+    content: "\e602";
+    font-family: 'IcoMoon', 'Tahoma';
+}
+.btn.checkable.active:before{
+    content: "\f046";
+    font-family: 'IcoMoon', 'Tahoma';
+}
+.btn.checkable:not(.active):before{
+    content: "\f096";
+    font-family: 'IcoMoon', 'Tahoma';
+    letter-spacing: 2px;
+}

@@ -1,7 +1,12 @@
-﻿var mapApp = angular.module('mapApp', ['ngRoute','angularTreeview'],
+﻿var mapApp = angular.module('mapApp', ['ngRoute','angularTreeview',/*'ngAnimate',*/ 'ui.bootstrap','tmh.dynamicLocale'],
     function ($routeProvider, $locationProvider) {
         $routeProvider
-            .when("/:lang", {
+            .when("/:lang/", {
+                //controller: "menuController",
+                templateUrl: "templates/main.html",
+                access: "all"
+            })
+            .when("/:lang/:sType/:sTerm", {
                 //controller: "menuController",
                 templateUrl: "templates/main.html",
                 access: "all"
@@ -18,6 +23,10 @@
         "searchResults":{
             "eng":"Search Results",
             "heb":"תוצאות חיפוש"
+        },
+        "search":{
+            "eng":"Search",
+            "heb":"חפש"
         },
         "staff":{
             "eng":"Staff",
@@ -44,7 +53,7 @@
             "heb":"בניין"
         },
         "numOfSeats":{
-            "eng":"number of seats",
+            "eng":"Number of seats",
             "heb":"מספר מושבים"
         },
         "noData":{
@@ -86,5 +95,17 @@
         "homepage":{
             "eng":"Home page",
             "heb":"דף הבית"
+        },
+        "noSearchResults":{
+            "eng":"No results",
+            "heb":"אין תוצאות"
+        },
+        "from":{
+            "eng":"From:",
+            "heb":"מ-"
+        },
+        "to":{
+            "eng":"To:",
+            "heb":"ל-"
         }
     });
