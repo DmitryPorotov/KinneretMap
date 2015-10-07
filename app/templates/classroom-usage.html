@@ -1,0 +1,17 @@
+<div class="modal-screen" ng-click="closeUsage($event)">
+    <div class="usage-window">
+        <div class="widget-title-bar">
+            <span class="widget-title">{{langConst.classesTakingPlace[langPrefix]}}</span>
+            <button class="close-button" type="button" ng-click="closeUsage($event)">&#x2715;</button>
+        </div>
+        <div ng-show="isUsageSpinnerShown" style="text-align: center">
+            <img src="images/spinner.gif">
+        </div>
+        <div class="no-usage-data" ng-hide="classesTakingPlace.length">
+            {{langConst.noData[langPrefix]}}
+        </div>
+        <div class="usage-time" ng-repeat="c in classesTakingPlace">
+            {{c}}
+        </div>
+    </div>
+</div>

@@ -1,5 +1,4 @@
-﻿mapApp.controller("menuController", ["$scope","$rootScope","$routeParams","langConst","menuLogicService","menuCache","tmhDynamicLocale",
-                            function ($scope, $rootScope, $routeParams, langConst, menuLogicService, menuCache, tmhDynamicLocale) {
+﻿mapApp.controller("menuController", ["$scope","$rootScope","$routeParams","langConst","menuLogicService","menuCache","tmhDynamicLocale", function ($scope, $rootScope, $routeParams, langConst, menuLogicService, menuCache, tmhDynamicLocale) {
     console.log("menuController " + $scope.$id);
     $scope.langPrefix = $routeParams.lang === "he" ? "heb" : "eng";
     $scope.langConst = langConst;
@@ -23,6 +22,7 @@
     $scope.isAdvSearchShown = false;
 
     $scope.isDocked = true;
+    $scope.isSpinnerShown = true;
 
     $scope.curBuilding = null;
     $scope.curFloor = null;
@@ -35,7 +35,7 @@
             var bd = menuLogicService.getBuildingsData();
             $rootScope.buildings = bd.buildings;
             if($routeParams.sTerm && $routeParams.sType){
-                handleUrlParams($routeParams.sType,$routeParams.sTerm);
+                handleUrlParams($routeParams.sType, $routeParams.sTerm);
             }
             menuCache.isInit = true;
         }, function (error) {
@@ -51,9 +51,10 @@
         });
     }
 
+
     $scope.showAdvSearch = function(){
         showPanes(false,false,false,false,false,true);
-        $scope.uselessArray = [1];
+        $scope.renderAdvSearchPaneArray = [1];
     };
 
     $scope.closeMenu = function() {
@@ -63,6 +64,7 @@
     $scope.search = function () {
         if ($scope.searchField) {
             showPanes(true);
+            $scope.isSpinnerShown = true;
             filterResults($scope.searchField);
         }
     };
@@ -88,7 +90,26 @@
     function filterResults(term) {
         $scope.searchResultsBuildings = menuLogicService.findBuildings(term);
         $scope.searchResultsRooms = menuLogicService.findRooms(term);
-        $scope.searchResultsStaff = menuLogicService.findPersons(term);
+
+        menuLogicService.findPersons(term).then(function(d){
+            $scope.searchResultsStaff = d.data;
+            $scope.isSpinnerShown = false;
+            if($scope.searchResultsStaff.length + $scope.searchResultsBuildings.length + $scope.searchResultsRooms.length == 1){
+                handleSingleSearchResult();
+            }
+        });
+    }
+
+    function handleSingleSearchResult(){
+        if($scope.searchResultsBuildings.length){
+            $scope.selectBuildingFromSearch($scope.searchResultsBuildings[0]);
+        }
+        else if($scope.searchResultsRooms.length){
+            $scope.selectRoomFromSearch($scope.searchResultsRooms[0]);
+        }
+        else if($scope.searchResultsStaff.length){
+            $scope.goToRoom($scope.searchResultsStaff[0].receptionPlace);
+        }
     }
 
     $scope.handleSelectionChange = function(locationSelectedFromMenu, curBuilding, curFloor, curRoom, curCubicle,isSearchShown,isBuildingsCatalogShown,isRoomDetailsShown,isFloorPlanShown,isBuildingDetailsShown){
@@ -105,7 +126,7 @@
             switch ($scope.roomsTree.currentNode.nodeType) {
                 case  "building":
                 case  "groupBuildings":{
-                    $scope.handleSelectionChange(n,null,null,null,null,false,true);
+                    $scope.handleSelectionChange(n,n,null,null,null,false,true,true);
                     break;
                 }
                 case "groupOther":{
@@ -136,7 +157,14 @@
     $rootScope.$watch("locationSelectedFromMap",function(n) {
         if (n) {
             var floor = n.floor || _.find(n.children,function(f){ return !f.number;}) || null;
-            var room = n.nodeType === 'noFloors' ? n : null;
+            if(n.nodeType === 'noFloors') {
+                floor = null;
+            }
+            var room =  null;
+            if(n.nodeType === 'noFloors' && n.floor)
+            {
+                room = n.floor.room;
+            }
             $scope.handleSelectionChange(null,n,floor,room,null,false,false,false,floor,true);
         }
     });
@@ -174,5 +202,5 @@
         handleUrlParams($routeParams.sType,$routeParams.sTerm);
     }
 
-                                tmhDynamicLocale.set($routeParams.lang);
+    tmhDynamicLocale.set($routeParams.lang);
 }]);

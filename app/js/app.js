@@ -32,15 +32,15 @@
             "eng":"Staff",
             "heb":"סגל"
         },
-        "classroom":{
+        "roomType1":{
             "eng":"Classroom",
             "heb":"כיתה"
         },
-        "compRoom":{
+        "roomType2":{
             "eng":"Computer room",
             "heb":"כיתת מחשבים"
         },
-        "auditorium":{
+        "roomType7":{
             "eng":"Auditorium",
             "heb":"אודיטוריום"
         },
@@ -107,5 +107,13 @@
         "to":{
             "eng":"To:",
             "heb":"ל-"
+        },
+        "usage":{
+            "eng":"Usage",
+            "heb":"שימוש"
+        },
+        "classesTakingPlace": {
+            "eng":"Today's classes",
+            "heb":"שיעורים של היום"
         }
     });

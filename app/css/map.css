@@ -240,7 +240,7 @@ body {
 }
 
 .rtl-body .search-box .arrow-up {
-    left: 15px;
+    left: 10px;
 }
 
 .rtl-body .adv-search-box .arrow-up {
@@ -252,7 +252,7 @@ body {
 }
 
 .ltr-body .search-box .arrow-up {
-    right: 17px;
+    right: 12px;
 }
 
 .ltr-body .adv-search-box .arrow-up {
@@ -308,17 +308,17 @@ body {
     cursor: pointer;
 }
 
-.svg-room path {
+.svg-room path, path.svg-room{
     fill: rgba(0, 0, 0, 0);
 }
 
-.floor-plan-container:not(.cubicles-shown) .svg-room:hover path {
+.floor-plan-container:not(.cubicles-shown) .svg-room:hover path,path.svg-room:hover{
     fill: rgba(141, 55, 180, 0.1);
     stroke: rgb(141, 55, 180);
     stroke-width: 1px;
 }
 
-.floor-plan-container:not(.cubicles-shown) .svg-room.selected path {
+.floor-plan-container:not(.cubicles-shown) .svg-room.selected path, path.svg-room.selected {
     fill: rgba(141, 55, 180, 0.4);
 }
 
@@ -404,7 +404,7 @@ body {
     right: auto;
 }
 
-@media (min-width: 1200px) and (min-height: 800px) {
+@media (min-width: 1200px) and (min-height: 850px) {
     .floor-plan-popup {
         width: 750px;
     }
@@ -415,6 +415,17 @@ body {
 
     .search-results-container {
         max-height: 300px;
+    }
+}
+
+@media (min-height: 650px) and (max-height: 750px) {
+    #menu-bar{top: 10px; right: 20px; }
+    .ltr-body #menu-bar {
+        left: 20px;
+        right: auto;
+    }
+    .search-results-container, .buildings-catalog-container{
+        max-height: 140px;
     }
 }
 
@@ -447,7 +458,7 @@ body {
 }
 
 .staff-card-container {
-    padding: 10px;
+    padding-bottom: 10px;
 }
 
 .staff-card-border {
@@ -467,16 +478,23 @@ body {
     padding: 5px 10px;
 }
 
-.location-card-item {
-    padding: 0 10px;
-    font-size: 13px;
-    cursor: pointer;
-    margin: 3px 0;
-
+.search-results-wrapper{
+    padding: 10px;
 }
 
-.location-card-item:before {
-    content: '\2022\00a0';
+.location-card-item {
+    font-size: 13px;
+    cursor: pointer;
+    padding: 5px 0;
+}
+
+.location-card-item:hover{
+    background-color: #fafafa;
+}
+
+.location-card-item-details {
+    font-size: 12px;
+    color: rgb(153, 153, 153);;
 }
 
 .goto-room {
@@ -549,6 +567,8 @@ body {
     background: #fff;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     padding: 10px;
+    white-space: nowrap;
+    z-index: 10000000;
 }
 .ltr-body .link-container{
     left: -10px;
@@ -568,4 +588,50 @@ body {
 .ltr-body .arrow-down{
     left: 10px;
     right: auto;
+}
+
+.floor-buttons {
+    position: fixed;
+    background-color: white;
+    z-index: 400000;
+    display: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.no-selection{
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+}
+
+.modal-screen{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 500010;
+}
+
+.usage-window {
+    position: absolute;
+    width: 250px;
+    top: 60px;
+    background-color: white;
+}
+
+.rtl-body .usage-window{right: 370px}
+.ltr-body .usage-window{left: 370px}
+
+.usage-button{
+    color: blue;
+    cursor: pointer;
+}
+.usage-time{
+    padding: 5px 5px 0 5px;
+}
+.no-usage-data, .usage-time:last-child{
+    padding: 5px;
 }

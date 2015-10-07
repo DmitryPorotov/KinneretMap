@@ -4,6 +4,11 @@
 mapApp.directive("kmRoomDetails",[function() {
     return {
         restrict: "E",
-        templateUrl:"templates/room-details.html"
+        templateUrl:"templates/room-details.html",
+        link: function ($scope, element, attrs) {
+            $scope.showUsage = function(room){
+                $scope.$emit('showUsage',room);
+            }
+        }
     }
 }]);

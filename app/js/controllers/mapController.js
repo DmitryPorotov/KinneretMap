@@ -2,6 +2,7 @@
  * Created by dmitry on 02/06/15.
  */
 mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", function ($scope, $rootScope, $routeParams) {
+    console.log("mapController " + $scope.$id);
     var map = null,
         textFunctions = {
             getText: function (feature, resolution) {
@@ -141,7 +142,7 @@ mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", funct
                 lastFeatureSelected.getStyle().pop();
             }
         }
-        if(lastLayerSelected !== layer){//building selecting does not unselect the previous building if those 2 building are on different layers. This is the fix
+        if(lastLayerSelected !== layer){//building selecting does not unselect the previous building if those 2 building are on different layers. This is the fix for it
             textFunctions.updateFeatures(map.getView().getResolution());
         }
         lastFeatureSelected = feature;
@@ -230,11 +231,19 @@ mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", funct
             }
         };
 
-        var vectorSourceMain = new ol.source.GeoJSON(buildings);
-
-        var vectorSourceMehina = new ol.source.GeoJSON(mehina);
-
-        var vectorSourceDorms = new ol.source.GeoJSON(dorms);
+        var vectorSourceMain = new ol.source.Vector();
+        var vectorSourceMehina = new ol.source.Vector();
+        var vectorSourceDorms = new ol.source.Vector();
+        var geoJsonFormat = new ol.format.GeoJSON();
+        var featuresMain = geoJsonFormat.readFeatures(mainCampus.object,
+            {featureProjection: mainCampus.projection});
+        var featuresMehina = geoJsonFormat.readFeatures(mehina.object,
+            {featureProjection: mehina.projection});
+        var featuresDorms = geoJsonFormat.readFeatures(dorms.object,
+            {featureProjection: dorms.projection});
+        vectorSourceMain.addFeatures(featuresMain);
+        vectorSourceMehina.addFeatures(featuresMehina);
+        vectorSourceDorms.addFeatures(featuresDorms);
 
         var vectorLayerMain = new ol.layer.Vector({
             source: vectorSourceMain,
@@ -292,12 +301,26 @@ mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", funct
                 attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
                     collapsible: false
                 })
-            }).extend([mousePositionControl]),
+            })
+                .extend([mousePositionControl])
+                ,
             target: 'map',
             layers: [
                 new ol.layer.Tile({
                     source: new ol.source.OSM()
                 }),
+                //new ol.layer.Tile({
+                //        visible: true,
+                //        preload: Infinity,
+                //        source: new ol.source.BingMaps({
+                //            key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',
+                //            //imagerySet: 'Aerial',
+                //            imagerySet: 'Road'
+                //            // use maxZoom 19 to see stretched tiles instead of the BingMaps
+                //            // "no photos at this zoom level" tiles
+                //             ,maxZoom: 19
+                //        })
+                //    }),
                 vectorLayerMain,
                 vectorLayerMehina,
                 vectorLayerDorms
@@ -326,6 +349,16 @@ mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", funct
             map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
                 if (feature.getId().indexOf("path") && feature.getId().indexOf("group")) {
                     hit = true;
+                    //if(hit){
+                    //    var loc = feature.get('linkedLocation');
+                    //    if(loc.nodeType === "building" && loc.children.length){
+                    //        var ext = feature.getGeometry().getExtent();
+                    //        var centerX = ((ext[0] - ext[2]) / 2) + ext[2];
+                    //        var centerY = ((ext[1] - ext[3]) / 2) + ext[3];
+                    //        var center = map.getPixelFromCoordinate([centerX,centerY]);
+                    //        $rootScope.$emit("openFloors",{location:loc, center:center,pixel: e.pixel});
+                    //    }
+                    //}
                 }
             });
 
@@ -333,6 +366,7 @@ mapApp.controller("mapController", ["$scope", "$rootScope","$routeParams", funct
                 angular.element(window.map).css("cursor", "pointer");
             } else {
                 angular.element(window.map).css("cursor", "");
+                $rootScope.$emit("closeFloors");
             }
         });
 

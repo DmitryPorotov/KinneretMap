@@ -11,7 +11,6 @@ mapApp.directive("kmResizing",[function() {
                 var e = element,
                     w = this.naturalWidth,h = this.naturalHeight;
                 scope.resizeTo(e,img,w,h);
-
             });
 
             scope.$watch("isDocked",function (){
@@ -20,9 +19,9 @@ mapApp.directive("kmResizing",[function() {
 
             scope.resizeTo = scope.resizeTo || function(e,img,w,h) {
                     var sizeNum = 0;
-                    if (!scope.isDocked /*img[0].src.indexOf("big") > -1*/){
+                    if (!scope.isDocked){
                         sizeNum = 1;
-                        if(window.innerHeight > 800 && window.innerWidth > 1200){
+                        if(window.innerHeight > 850 && window.innerWidth > 1200){
                             sizeNum = 2;
                         }
                     }

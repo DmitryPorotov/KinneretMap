@@ -42,7 +42,7 @@
             <button class="close-button" type="button" ng-click="closeMenu()">&#x2715;</button>
         </div>
         <div class="details-wrapper">
-            <div ng-hide="curBuilding.nodeType == 'noFloors'">
+            <div ng-hide="curBuilding.nodeType == 'noFloors'"><!--building details-->
                 {{curBuilding[langPrefix + "FullName"] || curBuilding[langPrefix + "Name"]}}
                 <km-link location="curBuilding"></km-link>
             </div>
@@ -57,20 +57,8 @@
     <div class="room-details-pane" ng-show="isRoomDetailsShown">
         <div class="details-wrapper">
             <km-room-details></km-room-details>
-            <!--<div ng-show="curRoom">-->
-                <!--{{curRoom.type ? langConst[curRoom.type][langPrefix] : ""}}-->
-                <!--{{curRoom[langPrefix + "FullName"] || curRoom.hebFullName || curRoom[langPrefix + "Name"] || curRoom.hebName }}-->
-                <!--<div ng-show="curRoom.type == 'classroom' || curRoom.type == 'compRoom'">-->
-                    <!--{{langConst.numOfSeats[langPrefix]}}: {{curRoom.seats ? curRoom.seats + "": langConst.noData[langPrefix]}}-->
-                <!--</div>-->
-                <!--<div ng-show="curRoom.nodeType == 'room'">-->
-                    <!--{{langConst.building[langPrefix]}}: {{curRoom.floor.building[langPrefix + "Name"]}}-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <div ng-show="curCubicle">
-                {{curCubicle.parent[langPrefix + "Name"]}}-{{curCubicle.onMapNumber}}
-            </div>
         </div>
     </div>
+    <km-floor-buttons></km-floor-buttons>
+    <km-classroom-usage ng-show="isUsageShown"></km-classroom-usage>
 </div>

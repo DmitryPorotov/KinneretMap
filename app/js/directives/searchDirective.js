@@ -31,16 +31,17 @@
             $scope.dt = new Date();
             $scope.minDate = new Date();
             $scope.maxDate = new Date().setDate( new Date().getDate()+7);
-            $scope.fromTime = new Date();
-            $scope.toTime = new Date();
-            $scope.uselessArray = [];
+            var d = new Date();
+            $scope.fromTime = d.setMinutes((Math.round( d.getMinutes()/10)) * 10);
+            $scope.toTime = d.setHours(d.getHours() + 1);
+            $scope.renderAdvSearchPaneArray = [];
 
             $scope.disabled = function(date, mode) {
                 return ( mode === 'day' && (  date.getDay() === 6 ) );
             };
 
-            $scope.roomTypes = ["compRoom","classroom"/*,"auditorium"*/];
-            $scope.selectedRoomTypes = ["compRoom"];
+            $scope.roomTypes = [2,1/*,7*/];
+            $scope.selectedRoomTypes = [2];
             $scope.toggleRoomType = function(type){
                 var index = $scope.selectedRoomTypes.indexOf(type);
                 if(index > -1){
@@ -54,8 +55,18 @@
             $scope.searchForAvailableRooms = function(startTime,endTime,date,types){
                 var d = date.toISOString().split("T")[0];
                 menuLogicService.filterRoomsByAvailability(startTime,endTime,d,types).then(function(d){
-                    $scope.searchResultsRooms = d.rooms;
-                    $scope.searchResultsBuildings = d.buildings;
+                    $scope.isSpinnerShown = false;
+
+                    $scope.searchResultsRooms = _.filter( d.rooms,function(r){
+                        return r.isSearchable;
+                    });
+                    var buildings = _.filter( d.rooms,function(r){
+                        return !r.isSearchable;
+                    });
+                    $scope.searchResultsBuildings = _.map(buildings, function (b) {
+                        return b.floor.building;
+                    });
+                    $scope.searchResultsStaff = [];
                     $scope.isSearchShown = true;
                     $scope.isAdvSearchShown = false;
                 });

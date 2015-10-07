@@ -6,7 +6,7 @@
         getRooms: getRooms,
         getBuildings: getBuildings,
         getFloors: getFloors,
-        getCubicles:getCubicles,
+        //getCubicles:getCubicles,
         getStaff:getStaff,
         getLessons:getLessons
     };
@@ -26,18 +26,19 @@
         return $http.get("mockData/floors.json",{cache: isCached});
     }
 
-    function getCubicles(){
-        return $http.get("http://localhost/api/cubicles.php",{cache: isCached});
-        return $http.get("mockData/cubicles.json",{cache: isCached});
-    }
+    //function getCubicles(){
+    //    return $http.get("http://localhost/api/cubicles.php",{cache: isCached});
+    //    return $http.get("mockData/cubicles.json",{cache: isCached});
+    //}
 
-    function getStaff(){
-        return $http.get("http://localhost/api/staff.php",{cache: isCached});
+    function getStaff(term){
+        return $http.get("http://localhost/api/staff2.php?term=" + term,{cache: isCached});
         return $http.get("mockData/staff.json",{cache: isCached});
     }
 
     function getLessons(date){
-        return $http.get("http://localhost/api/lessons.php?date=" + date,{cache: isCached})
+        return $http.get("http://localhost/api/lessons.php?date=" + date,{cache: isCached});
+        return $http.get("mockData/lessons.json?date=" + date,{cache: isCached});
     }
 
 }]);

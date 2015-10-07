@@ -10,20 +10,21 @@
         <!--<img ng-src="images/{{(fl.building.nodeType == 'oneFloor' ? fl.building.id : fl.buildingId + fl.number) + fl.imgSuffix}}.jpg" class="floor-plan-img" />-->
         <img ng-src="images/{{(fl.building.nodeType == 'oneFloor' ? fl.building.id : fl.buildingId + fl.number)}}big.jpg" class="floor-plan-img" />
         <svg ng-attr-view_box="{{fl.viewBox}}" class="floor-plan-svg" >
-            <g ng-repeat="r in fl.children" class="svg-room" ng-click="selectRoom(r)" ng-class="{selected:curRoom.id==r.id}">
-                <path ng-attr-d="{{r.svgPath}}"/>
-                <text ng-repeat="t in (r[langPrefix + 'OnMapName'] || r['hebOnMapName']).split('(n)')"
-                      ng-attr-x="{{r[langPrefix + 'LabelPosX'] || r['hebLabelPosX']}}"
-                      ng-attr-y="{{(r[langPrefix + 'LabelPosY'] || r['hebLabelPosY']) + (r[langPrefix + 'FontSize'] || r['hebFontSize']) * $index}}"
-                      ng-attr-style="font-size:{{r[langPrefix + 'FontSize'] || r['hebFontSize']}}px">
+            <path ng-repeat="c in fl.cubicles" ng-attr-d="{{c.svgPath}}" ng-show="c.isShown || c === curCubicle || !c.room"
+                  ng-click="selectCubicle(c)" ng-class="{selected: c === curCubicle,'svg-cubicle-path':c.room !== undefined,'svg-room':c.room === undefined}">
+                <title>{{c[langPrefix + "OnMapName"]}}</title>
+            </path>
+
+            <g ng-repeat="r in fl.children" class="svg-room" ng-click="selectRoom(r)" ng-dblclick="drillDown(r)" ng-class="{selected:curRoom.id==r.id}">
+                <path ng-attr-d="{{r.svgPath}}" ng-hide="isCubiclesShown"/>
+                <text ng-repeat="t in (r[langPrefix + 'OnMapName']).split('(n)')"
+                      ng-attr-x="{{r[langPrefix + 'LabelPosX']}}"
+                      ng-attr-y="{{(r[langPrefix + 'LabelPosY']) + (r[langPrefix + 'FontSize']) * $index}}"
+                      ng-attr-style="font-size:{{r[langPrefix + 'FontSize']}}px">
                     <tspan>{{t}}</tspan>
                 </text>
-                <title>{{r[langPrefix + "FullName"] || r["hebFullName"]}}</title>
+                <title>{{r[langPrefix + "FullName"]}}</title>
             </g>
-
-            <path ng-repeat="c in fl.cubicles" ng-attr-d="{{c.svgPath}}" class="svg-cubicle-path" ng-show="isCubiclesShown || c === curCubicle" ng-click="selectCubicle(c)" ng-class="{selected: c === curCubicle}">
-                <title>{{c.onMapNumber}}</title>
-            </path>
         </svg>
     </div>
 </div>

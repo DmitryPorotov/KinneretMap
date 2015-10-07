@@ -1,11 +1,22 @@
-<div>
-    {{curRoom.type ? langConst[curRoom.type][langPrefix] : ""}}
-    {{curRoom[langPrefix + "FullName"] || curRoom.hebFullName || curRoom[langPrefix + "Name"] || curRoom.hebName }}
-    <km-link location="curRoom"></km-link>
-    <div ng-show="curRoom.type == 'classroom' || curRoom.type == 'compRoom'">
+<div><!--rooom details-->
+    {{curRoom.type ? langConst["roomType" + curRoom.type][langPrefix] : ""}}
+    {{curRoom[langPrefix + "FullName"] }}
+    <km-link location="curRoom" ng-show="curRoom.nodeType"></km-link>
+    <div ng-show="curRoom.type == 1 || curRoom.type == 2">
         {{langConst.numOfSeats[langPrefix]}}: {{curRoom.seats ? curRoom.seats + "": langConst.noData[langPrefix]}}
     </div>
-    <div ng-show="curRoom.nodeType == 'room'">
+    <div ng-show="curRoom.nodeType == 'room' && curRoom.isSearchable">
         {{langConst.building[langPrefix]}}: {{curRoom.floor.building[langPrefix + "Name"]}}
     </div>
+    <div class="usage-button" ng-click="showUsage(curRoom)" ng-show="curRoom.externalId">
+        {{langConst.usage[langPrefix]}}
+    </div>
+</div>
+<div ng-show="curCubicle"><!--cubicle details-->
+    {{curCubicle.parent[langPrefix + "Name"]}}-{{curCubicle.hebOnMapName}}
+    <km-link location="curCubicle"></km-link>
+</div>
+<div ng-show="!isBuildingDetailsShown && !curFloor"><!--building details-->
+    {{curBuilding[langPrefix + "FullName"] }}
+    <km-link location="curBuilding"></km-link>
 </div>

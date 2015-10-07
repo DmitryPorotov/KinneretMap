@@ -7,7 +7,7 @@
     <link href="css/map.css" rel="stylesheet" />
     <link href="css/angular.treeview.css" rel="stylesheet" />
     <!--<link href="css/bootstrap.min.css" rel="stylesheet" />-->
-    <link href="css/bootstap-custom.css" rel="stylesheet" />
+    <link href="css/bootstrap-custom.css" rel="stylesheet" />
 
     <script src="js/lib/underscore-min.js"></script>
     <!--angular.js lib-->
@@ -29,15 +29,17 @@
     <script src="js/directives/resizingDirective.js"></script>
     <script src="js/directives/roomDetailsDirective.js"></script>
     <script src="js/directives/linkDirective.js"></script>
+    <script src="js/directives/floorButtonsDirective.js"></script>
+    <script src="js/directives/classroomUsageDirective.js"></script>
     <script src="js/controllers/bodyController.js"></script>
 
-
-    <script src="geoData/buildings.js"></script>
+    <script src="geoData/main-campus.js"></script>
     <script src="geoData/dorms.js"></script>
     <script src="geoData/mehina.js"></script>
     <script src="js/lib/ol-debug.js"></script>
 </head>
-<body ng-controller="bodyController" class="{{isRTL ? 'rtl-body':'ltr-body'}}" ng-keydown="onKeyEvent($event)" ng-keyup="onKeyEvent($event)">
+<body ng-controller="bodyController" class="{{isRTL ? 'rtl-body':'ltr-body'}}" ng-click="onClickEvent($event)">
+<!--<body ng-controller="bodyController" class="{{isRTL ? 'rtl-body':'ltr-body'}}">-->
 <div class="flags-box-container">
     <div class="flags-box">
         <div class="flags-holder">
@@ -50,6 +52,5 @@
 </div>
 <div id="map" class="map" ng-controller="mapController" style="direction: ltr"></div>
 <div ng-view=""></div>
-
 </body>
 </html>
