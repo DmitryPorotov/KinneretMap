@@ -169,8 +169,8 @@ mapApp.service("menuLogicService", [ '$q', 'dataService', function ($q, dataServ
             var room = rooms[0];
             var building = buildings[0];
             if (room && arr.length > 1) {
-                var cubicle = _.find(buildingsData.cubicles, function (c) {
-                    return c.onMapNumber == arr[1] && c.roomId == room.id;
+                var cubicle = _.find(buildingsData.rooms, function (c) {
+                    return c.hebOnMapName == arr[1] && c.insideOfRoomId == room.id;
                 });
             }
             if (building && building.nodeType === 'oneFloor' && arr.length > 1) {
