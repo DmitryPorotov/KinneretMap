@@ -1,4 +1,4 @@
-#This repo is archived
+# This repo is archived
 
 # angular-seed — the seed for AngularJS apps
 
